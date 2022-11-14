@@ -52,19 +52,22 @@
                                 <th>Kode Ujian</th>
                                 <th>Tanggal Ujian</th>
                                 <th>Opsi</th>
-                                {{-- <th>Opsi</th> --}}
                             </tr>
                         </thead>  
 
 
                         {{-- tes data --}}
                         {{-- <tbody> --}}
+                            @php
+                                $count = 1;
+                            @endphp
+                            @foreach ($ujians as $data)
                             <tr>
-                                <td>1.</td>
-                                <td>A</td>
-                                <td>Matematika</td>
-                                <td>absusiw</td>
-                                <td>12 november</td>
+                                <td>{{ $count++ }}</td>
+                                <td>{{ $data->id_ujian }}</td>
+                                <td>{{ $data->nama_ujian }}</td>
+                                <td>{{ $data->kode_ujian }}</td>
+                                <td>{{ $data->tanggal_ujian }}</td>
                                 <td>
                                     <a href=# class="btn btn-primary btn-xs">
                                         Edit
@@ -73,8 +76,8 @@
                                         Delete
                                     </a>
                                 </td>
-                                {{-- <th>Opsi</th> --}}
                             </tr>
+                            @endforeach
                         {{-- </tbody> --}}
                         
                         

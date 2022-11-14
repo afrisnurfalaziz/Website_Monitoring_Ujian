@@ -17,17 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ujian', function () {
-    return view('ujian.index');
-});
+Route::resource('/ujian', App\Http\Controllers\UjianController::class );
 
-Route::get('/siswa', function () {
-    return view('siswa.index');
-});
+Route::resource('/siswa', App\Http\Controllers\SiswaController::class );
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+Route::resource('/admin', App\Http\Controllers\AdminController::class );
+
+
 
 // Route::get('/home', function () {
 //     return view('home');
@@ -44,3 +40,12 @@ Route::get('/admin', function () {
 
 // Route::resource('users', \App\Http\Controllers\AdminController::class)
 //     ->middleware('auth');
+
+// beberapa fungsi endpoint resource yang perlu kita ketahui:
+// 1. Route get => nama_route => menjalankan fungsi index
+// 2. Route get => nama_route/create => menjalankan fungsi create
+// 3. Route post => nama_route => menjalankan fungsi store
+// 4. Route get => nama_route/{ id } => menjalankan fungsi show
+// 5. Route put/patch => nama_route/{ id } => menjalankan fungsi update
+// 6. Route delete => nama_route/{ id } => menjalankan fungsi delete
+// 7. Route get => nama_route/{ id }/edit => menjalankan fungsi edit

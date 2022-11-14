@@ -61,7 +61,34 @@
 
                         {{-- tes data --}}
                         {{-- <tbody> --}}
+
+                            @php
+                                $count = 1;
+                            @endphp
+                            @foreach ($siswas as $data)
+
                             <tr>
+                                <td>{{ $count++ }}</td>
+                                <td>{{ $data->nomer_induk }}</td>
+                                <td>{{ $data->nama_siswa }}</td>
+                                <td>{{ $data->jenis_kelamin }}</td>
+                                <td>{{ $data->telepon }}</td>
+                                <td>{{ $data->alamat }}</td>
+                                <td>{{ $data->email }}</td>
+
+                                <td>
+                                    <a href=# class="btn btn-primary btn-xs">
+                                        Edit
+                                    </a>
+                                    <a href=# class="btn btn-danger btn-xs">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                                
+                            @endforeach
+
+                            {{-- <tr>
                                 <td>1.</td>
                                 <td>A1726172</td>
                                 <td>Andi</td>
@@ -76,7 +103,7 @@
                                     <a href=# class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
-                                </td>
+                                </td> --}}
                                 {{-- <th>Opsi</th> --}}
                             </tr>
                         {{-- </tbody> --}}

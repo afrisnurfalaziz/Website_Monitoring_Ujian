@@ -58,13 +58,18 @@
 
 
                         {{-- tes data --}}
-                        {{-- <tbody> --}}
+                        @php
+                                $count = 1;
+                            @endphp
+                            @foreach ($admins as $data)
+
                             <tr>
-                                <td>1.</td>
-                                <td>Andi</td>
-                                <td>086265642612</td>
-                                <td>jl jember</td>
-                                <td>and@gmail.com</td>
+                                <td>{{ $count++ }}</td>
+                                <td>{{ $data->nama_admin }}</td>
+                                <td>{{ $data->telepon }}</td>
+                                <td>{{ $data->alamat }}</td>
+                                <td>{{ $data->email }}</td>
+
                                 <td>
                                     <a href=# class="btn btn-primary btn-xs">
                                         Edit
@@ -73,9 +78,9 @@
                                         Delete
                                     </a>
                                 </td>
-                                {{-- <th>Opsi</th> --}}
                             </tr>
-                        {{-- </tbody> --}}
+                                
+                            @endforeach
                         
                         
 
