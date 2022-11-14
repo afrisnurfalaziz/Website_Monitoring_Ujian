@@ -3,7 +3,7 @@
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"/>
-<section class="section">
+<section class="">
     @if ($message = Session::get('Delete'))
     <script>
         Swal.fire(
@@ -31,94 +31,152 @@
     )
     </script>
 	@endif
-    <div class="section-header">
-      <h1>Data Ujian</h1>
-    </div>
-    <div class="section-body">
-      <div class="row">
+    <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class= "class-body">
-                <div class="container mt-5 mb-5">
-                    <a href=# >
-                        <button class="btn btn-primary mb-2"> <i class="fas fa-user-plus"></i></button>
-                    </a>
-                    <table class ="table table-hover table-bordered table-stripped" id="alumni">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Id Ujian</th>
-                                <th>Nama Ujian</th>
-                                <th>Kode Ujian</th>
-                                <th>Tanggal Ujian</th>
-                                <th>Opsi</th>
-                            </tr>
-                        </thead>  
+                    <div class="container mt-5 mb-5">
+                        <h1>Data Ujian</h1>
 
-
-                        {{-- tes data --}}
-                        {{-- <tbody> --}}
-                            @php
-                                $count = 1;
-                            @endphp
-                            @foreach ($ujians as $data)
-                            <tr>
-                                <td>{{ $count++ }}</td>
-                                <td>{{ $data->id_ujian }}</td>
-                                <td>{{ $data->nama_ujian }}</td>
-                                <td>{{ $data->kode_ujian }}</td>
-                                <td>{{ $data->tanggal_ujian }}</td>
-                                <td>
-                                    <a href=# class="btn btn-primary btn-xs">
-                                        Edit
-                                    </a>
-                                    <a href=# class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        {{-- </tbody> --}}
-                        
-                        
-
-                        {{-- <tbody>
-                            @foreach($alumni as $key => $alumni)
-                              
+                        {{-- Add --}}
+                        <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user-plus"></i></button>
+                            
+                        <table class ="table table-hover table-bordered table-stripped" id="alumni">
+                            <thead>
                                 <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$alumni->no_induk}}</td>
-                                    <td>{{$alumni->nama}}</td>
-                                    <td>{{$alumni->no_ijazah}}</td>
-                                    <td>{{$alumni->no_skhun}}</td>
-                                    <td>{{$alumni->tahun_lulus}}</td>
-                                    <td>{{$alumni->tgl_pengambilan}}</td>
-                                    <td>@if($alumni->vcd_foto==1)
-                                          <button class="btn btn-sm btn-info">Sudah</button>
-                                        @elseif($alumni->vcd_foto==0)
-                                        <button class="btn btn-sm btn-warning">Belum</i></button>
-                                        @endif
-                                    </td>
-                                    <td>{{$alumni->nama_sekolah_lanjutan}}</td>
-                                    <td>@if($alumni->status==1)
-                                        Sudah Mengambil
-                                      @elseif($alumni->status==0)
-                                        Belum Mengambil
-                                      @endif</td>
+                                    <th>No.</th>
+                                    <th>Id Ujian</th>
+                                    <th>Nama Ujian</th>
+                                    <th>Kode Ujian</th>
+                                    <th>Tanggal Ujian</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </thead>  
+
+
+                            {{-- tes data --}}
+                            {{-- <tbody> --}}
+                                @php
+                                    $count = 1;
+                                @endphp
+                                @foreach ($ujians as $data)
+                                <tr>
+                                    <td>{{ $count++ }}</td>
+                                    <td>{{ $data->id_ujian }}</td>
+                                    <td>{{ $data->nama_ujian }}</td>
+                                    <td>{{ $data->kode_ujian }}</td>
+                                    <td>{{ $data->tanggal_ujian }}</td>
                                     <td>
-                                        <a href="{{route('alumni.edit', $alumni)}}" class="btn btn-primary btn-xs">
+                                        <a href=# class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editDataUjian{{ $data->id }}">
                                             Edit
                                         </a>
-                                        <a href="{{route('alumni.destroy', $alumni)}}" 
+                                        <a href="{{route('ujian.destroy', $data)}}" 
                                             onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                             Delete
                                         </a>
                                     </td>
                                 </tr>
-                            @endforeach
-                        </tbody>             --}}
-                    </table>
-                </div>
+
+                                {{-- Modal Edit --}}
+                                <div class="modal fade" id="editDataUjian{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Data Ujian</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ url('ujian/'. $data->id ) }}" method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                <div class="modal-body">
+                                                    {{-- id ujian --}}
+                                                    <div class="form-group">
+                                                        <label for="exampleInputIdUjian">Id. Ujian</label>
+                                                        <input type="text" class="form-control @error('id_ujian') is-invalid @enderror"
+                                                        id="exampleInputIdUjian" placeholder="Id Ujian" name="id_ujian"
+                                                        value="{{$data->id_ujian ?? old('id_ujian')}}">
+                                                        @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                                    </div>
+                    
+                                                    {{-- nama ujian --}}
+                                                    <div class="form-group">
+                                                        <label for="exampleInputNamaUjian">Nama Ujian</label>
+                                                        <input type="text" class="form-control @error('nama_ujian') is-invalid @enderror"
+                                                        id="exampleInputNama" placeholder="Nama Ujian" name="nama_ujian"
+                                                        value="{{$data->nama_ujian ?? old('nama_ujian')}}">
+                                                        @error('nama_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                                    </div>
+                    
+                                                    {{-- kode ujian --}}
+                                                    <div class="form-group">
+                                                        <label for="exampleInputKodeUjian">Kode Ujian</label>
+                                                        <input type="text" class="form-control @error('kode_ujian') is-invalid @enderror"
+                                                        id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="kode_ujian"
+                                                        value="{{$data->kode_ujian ?? old('kode_ujian')}}">
+                                                        @error('kode_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                                    </div>
+                                                    
+                                                    {{-- tanggal ujian --}}
+                                                    <div class="form-group">
+                                                        <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
+                                                        <input type="text" class="form-control @error('tanggal_ujian') is-invalid @enderror"
+                                                        id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="tanggal_ujian"
+                                                        value="{{$data->tanggal_ujian ?? old('tanggal_ujian')}}">
+                                                        @error('tanggal_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            {{-- </tbody> --}}
+                            
+                            
+
+                            {{-- <tbody>
+                                @foreach($alumni as $key => $alumni)
+                                
+                                    <tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$alumni->no_induk}}</td>
+                                        <td>{{$alumni->nama}}</td>
+                                        <td>{{$alumni->no_ijazah}}</td>
+                                        <td>{{$alumni->no_skhun}}</td>
+                                        <td>{{$alumni->tahun_lulus}}</td>
+                                        <td>{{$alumni->tgl_pengambilan}}</td>
+                                        <td>@if($alumni->vcd_foto==1)
+                                            <button class="btn btn-sm btn-info">Sudah</button>
+                                            @elseif($alumni->vcd_foto==0)
+                                            <button class="btn btn-sm btn-warning">Belum</i></button>
+                                            @endif
+                                        </td>
+                                        <td>{{$alumni->nama_sekolah_lanjutan}}</td>
+                                        <td>@if($alumni->status==1)
+                                            Sudah Mengambil
+                                        @elseif($alumni->status==0)
+                                            Belum Mengambil
+                                        @endif</td>
+                                        <td>
+                                            <a href="{{route('alumni.edit', $alumni)}}" class="btn btn-primary btn-xs">
+                                                Edit
+                                            </a>
+                                            <a href="{{route('alumni.destroy', $alumni)}}" 
+                                                onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                                Delete
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>             --}}
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,6 +201,72 @@
     @method('delete')
     @csrf
 </form>
+
+  <!-- Modal Create-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Data Ujian</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{url('ujian')}}" method="post">
+                @csrf
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                {{-- id ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputIdUjian">Id. Ujian</label>
+                                    <input type="text" class="form-control @error('id_ujian') is-invalid @enderror"
+                                    id="exampleInputIdUjian" placeholder="Id Ujian" name="id_ujian"
+                                    value="{{old('id_ujian')}}">
+                                    @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+
+                                {{-- nama ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputNamaUjian">Nama Ujian</label>
+                                    <input type="text" class="form-control @error('nama_ujian') is-invalid @enderror"
+                                    id="exampleInputNama" placeholder="Nama Ujian" name="nama_ujian"
+                                    value="{{old('nama_ujian')}}">
+                                    @error('nama_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+
+                                {{-- kode ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputKodeUjian">Kode Ujian</label>
+                                    <input type="text" class="form-control @error('kode_ujian') is-invalid @enderror"
+                                    id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="kode_ujian"
+                                    value="{{old('kode_ujian')}}">
+                                    @error('kode_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+                               
+                                {{-- tanggal ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
+                                    <input type="text" class="form-control @error('tanggal_ujian') is-invalid @enderror"
+                                    id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="tanggal_ujian"
+                                    value="{{old('tanggal_ujian')}}">
+                                    @error('tanggal_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
   $('#alumni').DataTable( {

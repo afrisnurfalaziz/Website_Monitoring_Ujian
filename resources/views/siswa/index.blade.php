@@ -3,7 +3,7 @@
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"/>
-<section class="section">
+<section class="">
     @if ($message = Session::get('Delete'))
     <script>
         Swal.fire(
@@ -31,18 +31,18 @@
     )
     </script>
 	@endif
-    <div class="section-header">
-      <h1>Data Siswa</h1>
-    </div>
-    <div class="section-body">
+    
       <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class= "class-body">
                 <div class="container mt-5 mb-5">
-                    <a href=# >
-                        <button class="btn btn-primary mb-2"> <i class="fas fa-user-plus"></i></button>
-                    </a>
+
+                    <h1>Data Siswa</h1>
+                    
+                    {{-- add --}}
+                    <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user-plus"></i></button>
+                    
                     <table class ="table table-hover table-bordered table-stripped" id="alumni">
                         <thead>
                             <tr>
@@ -77,14 +77,92 @@
                                 <td>{{ $data->email }}</td>
 
                                 <td>
-                                    <a href=# class="btn btn-primary btn-xs">
+                                    <a href=# class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editDataSiswa{{ $data->id }}">
                                         Edit
                                     </a>
-                                    <a href=# class="btn btn-danger btn-xs">
+                                    <a href="{{route('siswa.destroy', $data)}}" 
+                                        onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>
                             </tr>
+
+                            {{-- Modal Edit Siswa --}}
+                            <div class="modal fade" id="editDataSiswa{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Data Siswa</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ url('siswa/'. $data->id ) }}" method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="modal-body">
+                                                {{-- nomer induk --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputNoInduk">No. Induk</label>
+                                                    <input type="text" class="form-control @error('no_induk') is-invalid @enderror"
+                                                    id="exampleInputNoInduk" placeholder="Nomer Induk" name="nomer_induk"
+                                                    value="{{$data->nomer_induk ?? old('nomer_induk')}}">
+                                                    @error('nomer_induk') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+                
+                                                {{-- nama siswa --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputNamaSiswa">Nama Siswa</label>
+                                                    <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror"
+                                                    id="exampleInputSiswa" placeholder="Nama Siswa" name="nama_siswa"
+                                                    value="{{$data->nama_siswa ?? old('nama_siswa')}}">
+                                                    @error('nama_siswa') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+                
+                                                {{-- Jenis Kelamin --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
+                                                    <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                                                    id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="jenis_kelamin"
+                                                    value="{{$data->jenis_kelamin ?? old('jenis_kelamin')}}">
+                                                    @error('jenis_kelamin') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+                                                
+                                                {{-- telepon --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputTelepon">Telepon</label>
+                                                    <input type="text" class="form-control @error('telepon') is-invalid @enderror"
+                                                    id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="telepon"
+                                                    value="{{$data->telepon ?? old('telepon')}}">
+                                                    @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+
+                                                {{-- alamat --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputAlamat">Alamat</label>
+                                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                                                    id="exampleInputAlamat" placeholder="Masukkan Alamat" name="alamat"
+                                                    value="{{$data->alamat ?? old('alamat')}}">
+                                                    @error('alamat') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+                                                
+                                                {{-- email --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail">E-mail</label>
+                                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                                    id="exampleInputEmail" placeholder="Masukkan Email" name="email"
+                                                    value="{{$data->email ?? old('email')}}">
+                                                    @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                                 
                             @endforeach
 
@@ -105,7 +183,7 @@
                                     </a>
                                 </td> --}}
                                 {{-- <th>Opsi</th> --}}
-                            </tr>
+                            {{-- </tr> --}}
                         {{-- </tbody> --}}
                         
                         
@@ -150,7 +228,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
     </div>
   </section>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -171,6 +249,83 @@
     @method('delete')
     @csrf
 </form>
+
+{{-- Modal create Siswa --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Data Siswa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+                <div class="modal-body">
+                    <form action="{{ url('siswa') }}" method="POST">
+                    @csrf
+
+                    {{-- nomer induk --}}
+                    <div class="form-group">
+                        <label for="exampleInputNoInduk">No. Induk</label>
+                        <input type="text" class="form-control @error('no_induk') is-invalid @enderror"
+                        id="exampleInputNoInduk" placeholder="Nomer Induk" name="nomer_induk"
+                        value="{{old('nomer_induk')}}">
+                        @error('nomer_induk') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+
+                    {{-- nama siswa --}}
+                    <div class="form-group">
+                        <label for="exampleInputNamaSiswa">Nama Siswa</label>
+                        <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror"
+                        id="exampleInputSiswa" placeholder="Nama Siswa" name="nama_siswa"
+                        value="{{old('nama_siswa')}}">
+                        @error('nama_siswa') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+
+                    {{-- Jenis Kelamin --}}
+                    <div class="form-group">
+                        <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
+                        <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                        id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="jenis_kelamin"
+                        value="{{old('jenis_kelamin')}}">
+                        @error('jenis_kelamin') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    
+                    {{-- telepon --}}
+                    <div class="form-group">
+                        <label for="exampleInputTelepon">Telepon</label>
+                        <input type="text" class="form-control @error('telepon') is-invalid @enderror"
+                        id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="telepon"
+                        value="{{old('telepon')}}">
+                        @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+
+                    {{-- alamat --}}
+                    <div class="form-group">
+                        <label for="exampleInputAlamat">Alamat</label>
+                        <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                        id="exampleInputAlamat" placeholder="Masukkan Alamat" name="alamat"
+                        value="{{old('alamat')}}">
+                        @error('alamat') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                    
+                    {{-- email --}}
+                    <div class="form-group">
+                        <label for="exampleInputEmail">E-mail</label>
+                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                        id="exampleInputEmail" placeholder="Masukkan Email" name="email"
+                        value="{{old('email')}}">
+                        @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
   $('#alumni').DataTable( {

@@ -39,7 +39,18 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_admin' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+        ]);
+        $array = $request->only([
+            'nama_admin', 'telepon', 'alamat', 'email'
+        ]);
+        $admins = Admin::create($array);
+        return redirect()->route('admin.index')
+            ->with('save_message', 'Data admin baru telah berhasil disimpan.');
     }
 
     /**
@@ -73,7 +84,22 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_admin' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+           ]);
+    
+           $admins = Admin::find($id);
+           $admins->nama_admin = $request->nama_admin;
+           $admins->telepon = $request->telepon;
+           $admins->alamat = $request->alamat;
+           $admins->email = $request->email;
+           $admins->save();
+    
+           return redirect()->route('admin.index')
+                ->with('success_message', 'Data admin telah berhasil diperbarui.');
     }
 
     /**
@@ -84,6 +110,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admins = Admin::find($id);
+        if ($admins) $admins->delete();
+        return redirect()->route('admin.index')
+            ->with('Delete', 'Berhasil menghapus data.');
     }
 }

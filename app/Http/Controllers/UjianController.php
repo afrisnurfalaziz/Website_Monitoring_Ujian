@@ -14,7 +14,7 @@ class UjianController extends Controller
      */
     public function index()
     {
-        $ujians = Ujian::all();
+        $ujians = Ujian::all()->sortByDesc('updated_at');
 
         return view('ujian.index', [
             'ujians' => $ujians,
@@ -39,7 +39,18 @@ class UjianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_ujian' => ['required', 'unique:ujians'],
+            'nama_ujian' => 'required',
+            'kode_ujian' => ['required', 'unique:ujians'],
+            'tanggal_ujian' => 'required',
+        ]);
+        $array = $request->only([
+            'id_ujian', 'nama_ujian', 'kode_ujian', 'tanggal_ujian'
+        ]);
+        $ujians = Ujian::create($array);
+        return redirect()->route('ujian.index')
+            ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
     /**
@@ -73,7 +84,22 @@ class UjianController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_ujian' => ['required'],
+            'nama_ujian' => 'required',
+            'kode_ujian' => ['required'],
+            'tanggal_ujian' => 'required',
+        ]);
+
+        $ujians = Ujian::find($id);
+        $ujians->id_ujian = $request->id_ujian;
+        $ujians->nama_ujian = $request->nama_ujian;
+        $ujians->kode_ujian = $request->kode_ujian;
+        $ujians->tanggal_ujian = $request->tanggal_ujian;
+        $ujians->save();
+
+        return redirect()->route('ujian.index')
+            ->with('success_message', 'Data ujian telah berhasil diperbarui.');
     }
 
     /**
@@ -84,6 +110,9 @@ class UjianController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ujians = Ujian::find($id);
+        if ($ujians) $ujians->delete();
+        return redirect()->route('ujian.index')
+            ->with('Delete', 'Berhasil menghapus data.');
     }
 }
