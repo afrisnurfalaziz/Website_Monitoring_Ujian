@@ -17,11 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/ujian', App\Http\Controllers\UjianController::class );
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
-Route::resource('/siswa', App\Http\Controllers\SiswaController::class );
+Route::resource('/ujian', App\Http\Controllers\UjianController::class )
+    ->middleware('auth');
 
-Route::resource('/admin', App\Http\Controllers\AdminController::class );
+Route::resource('/siswa', App\Http\Controllers\SiswaController::class )
+    ->middleware('auth');
+
+Route::resource('/admin', App\Http\Controllers\AdminController::class )
+    ->middleware('auth');
 
 
 
@@ -30,7 +37,7 @@ Route::resource('/admin', App\Http\Controllers\AdminController::class );
 // })->name('home')->middleware('auth');;
 // Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::resource('alumni', \App\Http\Controllers\UjianController::class)
 //     ->middleware('auth');
@@ -49,3 +56,6 @@ Route::resource('/admin', App\Http\Controllers\AdminController::class );
 // 5. Route put/patch => nama_route/{ id } => menjalankan fungsi update
 // 6. Route delete => nama_route/{ id } => menjalankan fungsi delete
 // 7. Route get => nama_route/{ id }/edit => menjalankan fungsi edit
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

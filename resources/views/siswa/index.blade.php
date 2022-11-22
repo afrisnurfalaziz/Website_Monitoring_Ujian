@@ -60,7 +60,6 @@
 
 
                         {{-- tes data --}}
-                        {{-- <tbody> --}}
 
                             @php
                                 $count = 1;
@@ -166,63 +165,6 @@
                                 
                             @endforeach
 
-                            {{-- <tr>
-                                <td>1.</td>
-                                <td>A1726172</td>
-                                <td>Andi</td>
-                                <td>Pria</td>
-                                <td>086265642612</td>
-                                <td>jl jember</td>
-                                <td>and@gmail.com</td>
-                                <td>
-                                    <a href=# class="btn btn-primary btn-xs">
-                                        Edit
-                                    </a>
-                                    <a href=# class="btn btn-danger btn-xs">
-                                        Delete
-                                    </a>
-                                </td> --}}
-                                {{-- <th>Opsi</th> --}}
-                            {{-- </tr> --}}
-                        {{-- </tbody> --}}
-                        
-                        
-
-                        {{-- <tbody>
-                            @foreach($alumni as $key => $alumni)
-                              
-                                <tr>
-                                    <td>{{$key+1}}</td>
-                                    <td>{{$alumni->no_induk}}</td>
-                                    <td>{{$alumni->nama}}</td>
-                                    <td>{{$alumni->no_ijazah}}</td>
-                                    <td>{{$alumni->no_skhun}}</td>
-                                    <td>{{$alumni->tahun_lulus}}</td>
-                                    <td>{{$alumni->tgl_pengambilan}}</td>
-                                    <td>@if($alumni->vcd_foto==1)
-                                          <button class="btn btn-sm btn-info">Sudah</button>
-                                        @elseif($alumni->vcd_foto==0)
-                                        <button class="btn btn-sm btn-warning">Belum</i></button>
-                                        @endif
-                                    </td>
-                                    <td>{{$alumni->nama_sekolah_lanjutan}}</td>
-                                    <td>@if($alumni->status==1)
-                                        Sudah Mengambil
-                                      @elseif($alumni->status==0)
-                                        Belum Mengambil
-                                      @endif</td>
-                                    <td>
-                                        <a href="{{route('alumni.edit', $alumni)}}" class="btn btn-primary btn-xs">
-                                            Edit
-                                        </a>
-                                        <a href="{{route('alumni.destroy', $alumni)}}" 
-                                            onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                            Delete
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>             --}}
                     </table>
                 </div>
                 </div>
@@ -295,7 +237,7 @@
                     <div class="form-group">
                         <label for="exampleInputTelepon">Telepon</label>
                         <input type="text" class="form-control @error('telepon') is-invalid @enderror"
-                        id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="telepon"
+                        id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="telepon"
                         value="{{old('telepon')}}">
                         @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
@@ -359,19 +301,19 @@
         buttons: [
             { extend: 'pdf', 
               text: '<i class="fa fa-file-pdf text-danger"></i> PDF', 
-              title: 'Daftar Alumni MTs At - Taqwa Bondowoso',
+              title: 'Daftar siswa',
               exportOptions: { columns: ':visible'},
               messageTop: '',
               orientation:'portrait',
               pageSize:'A4'
             },
             { extend: 'excel', text: '<i class="fa fa-file-excel text-success" > </i> EXCEL', 
-            title: 'Daftar Alumni MTs At - Taqwa Bondowoso',
+            title: 'Daftar Siswa',
             exportOptions: { columns: ':visible'},
             messageTop: ''
             },
             { extend: 'print', text: '<i class="fa fa-print text-info" > </i> PRINT', 
-            title: 'Daftar Alumni MTs At - Taqwa Bondowoso',
+            title: 'Daftar siswa',
             exportOptions: { columns: ':visible'},
             messageTop: '',
             },
