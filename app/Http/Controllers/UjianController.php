@@ -18,6 +18,7 @@ class UjianController extends Controller
 
         return view('ujian.index', [
             'ujians' => $ujians,
+            'menu' => 'ujian'
         ]);
     }
 

@@ -18,6 +18,7 @@ class SiswaController extends Controller
 
         return view('siswa.index', [
             'siswas' => $siswas,
+            'menu' => 'siswa'
         ]);
     }
 

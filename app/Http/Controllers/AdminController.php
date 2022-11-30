@@ -18,6 +18,7 @@ class AdminController extends Controller
 
         return view('admin.index', [
             'admins' => $admins,
+            'menu' => 'admin'
         ]);
     }
 
