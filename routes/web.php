@@ -21,13 +21,13 @@ Route::get('/', function () {
 //     return view('home');
 // });
 
-Route::resource('/ujian', App\Http\Controllers\UjianController::class )
+Route::resource('/ujian', App\Http\Controllers\UjianController::class)
     ->middleware('auth');
 
-Route::resource('/siswa', App\Http\Controllers\SiswaController::class )
+Route::resource('/siswa', App\Http\Controllers\SiswaController::class)
     ->middleware('auth');
 
-Route::resource('/admin', App\Http\Controllers\AdminController::class )
+Route::resource('/admin', App\Http\Controllers\AdminController::class)
     ->middleware('auth');
 
 

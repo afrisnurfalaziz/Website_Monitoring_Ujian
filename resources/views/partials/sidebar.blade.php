@@ -35,6 +35,7 @@
         
 @endswitch
 <div class="main-sidebar">
+<<<<<<< HEAD
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
         <a href="/home">Monitoring</a>
@@ -48,13 +49,16 @@
           <li class="nav-link {{ $ujian }}"><a class="nav-link" href="/ujian"><i class="fas fa-folder-open"></i> <span>Data Ujian</span></a></li>
           <li class="nav-link {{ $siswa }}"><a class="nav-link" href="/siswa"><i class="fas fa-folder-open"></i> <span>Data Siswa</span></a></li>
           <li class="nav-link {{ $admin }}"><a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> <span>Data Admin</span></a></li>
+=======
+  
+>>>>>>> e1f3095353ae8c6bd9b490f35916fc2664d3e076
 
-          
-          {{-- <li class="nav-item">
+
+      {{-- <li class="nav-item">
             <a href="/home"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             <a href="/alumni"><i class="fas fa-folder-open"></i><span>Data Alumni</span></a>
             <a href="/admin"><i class="fas fa-user-cog"></i><span>Data Admin</span></a>
           </li> --}}
-        </ul>
-    </aside>
-  </div>
+    </ul>
+  </aside>
+</div>
