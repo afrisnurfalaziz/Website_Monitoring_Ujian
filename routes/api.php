@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ExamController;
+use App\Http\Controllers\API\MonitoringController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('login', [AuthController::class, 'login']);
+Route::get('monitorings', [MonitoringController::class, 'index']);
+Route::post('monitorings', [MonitoringController::class, 'store']);
+Route::get('exams', [ExamController::class, 'index']);

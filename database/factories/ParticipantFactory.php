@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class ParticipantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,11 +15,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Administrator',
-            'email' => 'admin@gmail.com',
+            'name' => 'Participant',
+            'gender' => 'Laki-Laki',
+            'email' => 'participant@gmail.com',
             'phone' => '082123123123',
-            'password' => '$2y$10$vqiehwVxos2ZeapOscUXE.PYFLLVBsW9TH82R1f7/SFdccgXMyyti', // password = 123123123
-            'role' => 1, // 1 = true, 0 = false
+            'address' => 'Jember, Jawa Timur',
         ];
     }
 

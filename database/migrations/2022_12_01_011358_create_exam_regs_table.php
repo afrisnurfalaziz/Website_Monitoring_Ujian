@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUjiansTable extends Migration
+class CreateExamRegsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateUjiansTable extends Migration
      */
     public function up()
     {
-        Schema::create('ujians', function (Blueprint $table) {
+        Schema::create('exam_regs', function (Blueprint $table) {
             $table->id();
-            $table->string('id_ujian');
-            $table->string('nama_ujian');
-            $table->string('kode_ujian');
-            $table->string('tanggal_ujian');
+            $table->bigInteger('exam_id');
+            $table->bigInteger('participant_id');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateUjiansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ujians');
+        Schema::dropIfExists('reg_ujians');
     }
 }

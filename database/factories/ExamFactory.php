@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class ExamFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,11 +15,9 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'Administrator',
-            'email' => 'admin@gmail.com',
-            'phone' => '082123123123',
-            'password' => '$2y$10$vqiehwVxos2ZeapOscUXE.PYFLLVBsW9TH82R1f7/SFdccgXMyyti', // password = 123123123
-            'role' => 1, // 1 = true, 0 = false
+            'exam_code' => 123123123,
+            'exam_name' => 'Logika Algoritma',
+            'exam_date' => '2022-12-12',
         ];
     }
 

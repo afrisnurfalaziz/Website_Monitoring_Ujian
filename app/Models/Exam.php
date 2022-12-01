@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ujian extends Model
+class Exam extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'id_ujian',
-        'nama_ujian',
-        'kode_ujian',
-        'tanggal_ujian',
+        'exam_code',
+        'exam_name',
+        'exam_date',
     ];
+
+    public function examRegs()
+    {
+        return $this->hasMany(ExamReg::class);
+    }
 }
