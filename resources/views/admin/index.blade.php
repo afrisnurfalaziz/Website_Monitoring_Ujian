@@ -31,6 +31,15 @@
     )
     </script>
 	@endif
+    @if ($message = Session::get('error_message'))
+    <script>
+        Swal.fire(
+      'Gagal!',
+      '{{ $message }}'
+    )
+    </script>
+	@endif
+
     
     
       <div class="row">

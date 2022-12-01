@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use App\Models\Exam;
 
-class AdminController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::all();
+        $ujians = Exam::all()->sortByDesc('updated_at');
 
-        return view('admin.index', [
-            'admins' => $admins,
-            'menu' => 'admin'
+        return view('ujian.index', [
+            'ujians' => $ujians,
+            'menu' => 'ujian'
         ]);
     }
 
@@ -41,17 +41,17 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_admin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
+            'id_ujian' => ['required', 'unique:ujians'],
+            'nama_ujian' => 'required',
+            'kode_ujian' => ['required', 'unique:ujians'],
+            'tanggal_ujian' => 'required',
         ]);
         $array = $request->only([
-            'nama_admin', 'telepon', 'alamat', 'email'
+            'id_ujian', 'nama_ujian', 'kode_ujian', 'tanggal_ujian'
         ]);
-        $admins = Admin::create($array);
-        return redirect()->route('admin.index')
-            ->with('save_message', 'Data admin baru telah berhasil disimpan.');
+        $ujians = Exam::create($array);
+        return redirect()->route('ujian.index')
+            ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
     /**
@@ -86,21 +86,21 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_admin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-           ]);
-    
-           $admins = Admin::find($id);
-           $admins->nama_admin = $request->nama_admin;
-           $admins->telepon = $request->telepon;
-           $admins->alamat = $request->alamat;
-           $admins->email = $request->email;
-           $admins->save();
-    
-           return redirect()->route('admin.index')
-                ->with('success_message', 'Data admin telah berhasil diperbarui.');
+            'id_ujian' => ['required'],
+            'nama_ujian' => 'required',
+            'kode_ujian' => ['required'],
+            'tanggal_ujian' => 'required',
+        ]);
+
+        $ujians = Exam::find($id);
+        $ujians->id_ujian = $request->id_ujian;
+        $ujians->nama_ujian = $request->nama_ujian;
+        $ujians->kode_ujian = $request->kode_ujian;
+        $ujians->tanggal_ujian = $request->tanggal_ujian;
+        $ujians->save();
+
+        return redirect()->route('ujian.index')
+            ->with('success_message', 'Data ujian telah berhasil diperbarui.');
     }
 
     /**
@@ -111,9 +111,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        $admins = Admin::find($id);
-        if ($admins) $admins->delete();
-        return redirect()->route('admin.index')
+        $ujians = Exam::find($id);
+        if ($ujians) $ujians->delete();
+        return redirect()->route('ujian.index')
             ->with('Delete', 'Berhasil menghapus data.');
     }
 }
