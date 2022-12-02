@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>Login &mdash; Web Monitoring</title>
 
-  @include('auth.core')
+  @include('core')
 </head>
 
 <body class="background-walk-y position-relative" data-background="{{ asset('assets/img/ujianonline.jpg') }}">

@@ -16,7 +16,7 @@ class ExamController extends Controller
     {
         $ujians = Exam::all()->sortByDesc('updated_at');
 
-        return view('ujian.index', [
+        return view('dataUjian', [
             'ujians' => $ujians,
             'menu' => 'ujian'
         ]);
@@ -50,7 +50,7 @@ class ExamController extends Controller
             'id_ujian', 'nama_ujian', 'kode_ujian', 'tanggal_ujian'
         ]);
         $ujians = Exam::create($array);
-        return redirect()->route('ujian.index')
+        return redirect()->route('dataUjian')
             ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
@@ -99,7 +99,7 @@ class ExamController extends Controller
         $ujians->tanggal_ujian = $request->tanggal_ujian;
         $ujians->save();
 
-        return redirect()->route('ujian.index')
+        return redirect()->route('')
             ->with('success_message', 'Data ujian telah berhasil diperbarui.');
     }
 
@@ -113,7 +113,7 @@ class ExamController extends Controller
     {
         $ujians = Exam::find($id);
         if ($ujians) $ujians->delete();
-        return redirect()->route('ujian.index')
+        return redirect()->route('dataUjian')
             ->with('Delete', 'Berhasil menghapus data.');
     }
 }
