@@ -39,7 +39,7 @@
             <div class="card">
                 <div class="class-body">
                     <div class="container mt-4 mb-4">
-                        <h1>Data Ujian</h1>
+                        <h1>Data Peserta Ujian</h1>
 
                         <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#addData"> <i class="fas fa-user-plus"></i></button>
 
@@ -47,11 +47,14 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>ID Ujian</th>
-                                    <th>Nama Ujian</th>
-                                    <th>Kode Ujian</th>
-                                    <th>Tanggal Ujian</th>
-                                    <th>Opsi</th>
+                                    <th>ID Peserta</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Email</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Alamat</th>
+                                    <th>Created</th>
+                                    <th>Updated</th>
                                 </tr>
                             </thead>
 
@@ -64,10 +67,14 @@
 
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $data->id_ujian }}</td>
-                                <td>{{ $data->nama_ujian }}</td>
-                                <td>{{ $data->kode_ujian }}</td>
-                                <td>{{ $data->tanggal_ujian }}</td>
+                                <td>{{ $data->id }}</td>
+                                <td>{{ $data->name }}</td>
+                                <td>{{ $data->gender }}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->phone }}</td>
+                                <td>{{ $data->address }}</td>
+                                <td>{{ $data->created_at }}</td>
+                                <td>{{ $data->updated_at }}</td>
                                 <td>
                                     <a href=# class="btn btn-warning btn-xs mb-2" href="">
                                         Peserta Ujian

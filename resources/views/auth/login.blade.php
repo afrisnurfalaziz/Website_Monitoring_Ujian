@@ -63,9 +63,9 @@
                   </div>
                 </form>
 
-                <div class="mt-2 text-muted text-center">
+                <!-- <div class="mt-2 text-muted text-center">
                   Don't have an account? <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Create One!</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
