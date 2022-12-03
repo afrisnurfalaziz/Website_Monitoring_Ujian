@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siswa;
+use App\Models\Participant;
 
-class SiswaController extends Controller
+class ParticipantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SiswaController extends Controller
      */
     public function index(    )
     {
-        $siswas = Siswa::all();
+        $siswas = Participant::all();
 
         return view('siswa.index', [
             'siswas' => $siswas,
@@ -51,7 +51,7 @@ class SiswaController extends Controller
         $array = $request->only([
             'nomer_induk', 'nama_siswa', 'jenis_kelamin', 'telepon', 'alamat', 'email'
         ]);
-        $siswas = Siswa::create($array);
+        $siswas = Participant::create($array);
         return redirect()->route('siswa.index')
             ->with('save_message', 'Data siswa baru telah berhasil disimpan.');
     }
@@ -96,7 +96,7 @@ class SiswaController extends Controller
         'email' => 'required',
        ]);
 
-       $siswas = Siswa::find($id);
+       $siswas = Participant::find($id);
        $siswas->nomer_induk = $request->nomer_induk;
        $siswas->nama_siswa = $request->nama_siswa;
        $siswas->jenis_kelamin = $request->jenis_kelamin;
@@ -117,7 +117,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswas = Siswa::find($id);
+        $siswas = Participant::find($id);
         if ($siswas) $siswas->delete();
         return redirect()->route('siswa.index')
             ->with('Delete', 'Berhasil menghapus data.');

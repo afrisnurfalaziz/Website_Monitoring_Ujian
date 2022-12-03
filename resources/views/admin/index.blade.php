@@ -58,9 +58,9 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama</th>
-                                <th>Telepon</th>
-                                <th>Alamat</th>
                                 <th>E-mail</th>
+                                <th>Telepon</th>
+                                <th>Role</th>
                                 <th>Opsi</th>
                                 {{-- <th>Opsi</th> --}}
                             </tr>
@@ -76,9 +76,9 @@
                             <tr>
                                 <td>{{ $count++ }}</td>
                                 <td>{{ $data->nama_admin }}</td>
-                                <td>{{ $data->telepon }}</td>
-                                <td>{{ $data->alamat }}</td>
                                 <td>{{ $data->email }}</td>
+                                <td>{{ $data->telepon }}</td>
+                                <td>{{ $data->role }}</td>
 
                                 <td>
                                     <a href=# class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editDataAdmin{{ $data->id }}">
@@ -128,18 +128,27 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputTelepon">Telepon</label>
                                                     <input type="text" class="form-control @error('telepon') is-invalid @enderror"
-                                                    id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="telepon"
+                                                    id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="telepon"
                                                     value="{{$data->telepon ?? old('telepon')}}">
                                                     @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
                                                 
-                                                {{-- role --}}
+                                                {{-- role
                                                 <div class="form-group">
                                                     <label for="exampleInputRole">Role</label>
                                                     <input type="text" class="form-control @error('role') is-invalid @enderror"
                                                     id="exampleInputRole" placeholder="Pilih Role" name="role"
                                                     value="{{$data->role ?? old('role')}}">
                                                     @error('role') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div> --}}
+
+                                                {{-- role --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputStatus">Role</label>
+                                                    <select class="form-control" name="status" id="status" required>
+                                                        <option value="1">Super Admin</option>
+                                                        <option value="0">Admin</option>
+                                                    </select>
                                                 </div>
 
                                             </div>
@@ -225,13 +234,22 @@
                     @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
 
-                {{-- role --}}
+                {{-- role
                 <div class="form-group">
                     <label for="exampleInputRole">Role</label>
                     <input type="text" class="form-control @error('role') is-invalid @enderror"
                     id="exampleInputRole" placeholder="Pilih Role" name="role"
                     value="{{old('role')}}">
                     @error('role') <span class="text-danger">{{$message}}</span> @enderror
+                </div> --}}
+
+                {{-- role --}}
+                <div class="form-group">
+                    <label for="exampleInputStatus">Role</label>
+                    <select class="form-control" name="status" id="status" required>
+                        <option value="1">Super Admin</option>
+                        <option value="0">Admin</option>
+                    </select>
                 </div>
 
                 {{-- password --}}
@@ -259,9 +277,6 @@
                     </div>
                 </div>
 
-
-                
-                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
