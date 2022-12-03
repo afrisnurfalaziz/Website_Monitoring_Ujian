@@ -114,6 +114,15 @@
                                                     value="{{$data->nama_admin ?? old('nama_admin')}}">
                                                     @error('nama_admin') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
+
+                                                {{-- email --}}
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail">E-mail</label>
+                                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                                    id="exampleInputEmail" placeholder="Masukkan Email" name="email"
+                                                    value="{{$data->email ?? old('email')}}">
+                                                    @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                                                </div>
                                                 
                                                 {{-- telepon --}}
                                                 <div class="form-group">
@@ -123,24 +132,16 @@
                                                     value="{{$data->telepon ?? old('telepon')}}">
                                                     @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
-
-                                                {{-- alamat --}}
-                                                <div class="form-group">
-                                                    <label for="exampleInputAlamat">Alamat</label>
-                                                    <input type="text" class="form-control @error('alamat') is-invalid @enderror"
-                                                    id="exampleInputAlamat" placeholder="Masukkan Alamat" name="alamat"
-                                                    value="{{$data->alamat ?? old('alamat')}}">
-                                                    @error('alamat') <span class="text-danger">{{$message}}</span> @enderror
-                                                </div>
                                                 
-                                                {{-- email --}}
+                                                {{-- role --}}
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail">E-mail</label>
-                                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                                    id="exampleInputEmail" placeholder="Masukkan Email" name="email"
-                                                    value="{{$data->email ?? old('email')}}">
-                                                    @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                                                    <label for="exampleInputRole">Role</label>
+                                                    <input type="text" class="form-control @error('role') is-invalid @enderror"
+                                                    id="exampleInputRole" placeholder="Pilih Role" name="role"
+                                                    value="{{$data->role ?? old('role')}}">
+                                                    @error('role') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -205,6 +206,15 @@
                     value="{{old('nama_admin')}}">
                     @error('nama_admin') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
+
+                {{-- email --}}
+                <div class="form-group">
+                    <label for="exampleInputEmail">E-mail</label>
+                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                    id="exampleInputEmail" placeholder="Masukkan Email" name="email"
+                    value="{{old('email')}}">
+                    @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                </div>
                 
                 {{-- telepon --}}
                 <div class="form-group">
@@ -215,23 +225,43 @@
                     @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
 
-                {{-- alamat --}}
+                {{-- role --}}
                 <div class="form-group">
-                    <label for="exampleInputAlamat">Alamat</label>
-                    <input type="text" class="form-control @error('alamat') is-invalid @enderror"
-                    id="exampleInputAlamat" placeholder="Masukkan Alamat" name="alamat"
-                    value="{{old('alamat')}}">
-                    @error('alamat') <span class="text-danger">{{$message}}</span> @enderror
+                    <label for="exampleInputRole">Role</label>
+                    <input type="text" class="form-control @error('role') is-invalid @enderror"
+                    id="exampleInputRole" placeholder="Pilih Role" name="role"
+                    value="{{old('role')}}">
+                    @error('role') <span class="text-danger">{{$message}}</span> @enderror
                 </div>
+
+                {{-- password --}}
+                <div class="row mb-3">
+                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                {{-- pass confirm --}}
+
+                <div class="row mb-3">
+                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                    <div class="col-md-6">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                </div>
+
+
                 
-                {{-- email --}}
-                <div class="form-group">
-                    <label for="exampleInputEmail">E-mail</label>
-                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                    id="exampleInputEmail" placeholder="Masukkan Email" name="email"
-                    value="{{old('email')}}">
-                    @error('email') <span class="text-danger">{{$message}}</span> @enderror
-                </div>
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

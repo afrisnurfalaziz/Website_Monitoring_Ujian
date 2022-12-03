@@ -41,14 +41,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_admin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'telepon' => ['required', 'string', 'max:13', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        $array = $request->only([
-            'nama_admin', 'telepon', 'alamat', 'email'
+
+        $array = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'telepon' => $request->telepon,
+            'password' => Hash::make($request->password),
+
         ]);
+
         $admins = User::create($array);
         return redirect()->route('admin.index')
             ->with('save_message', 'Data admin baru telah berhasil disimpan.');
@@ -87,16 +93,16 @@ class UserController extends Controller
     {
         $request->validate([
             'nama_admin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
             'email' => 'required',
+            'telepon' => 'required',
+            'role' => 'required',
            ]);
     
            $admins = User::find($id);
            $admins->nama_admin = $request->nama_admin;
-           $admins->telepon = $request->telepon;
-           $admins->alamat = $request->alamat;
            $admins->email = $request->email;
+           $admins->telepon = $request->telepon;
+           $admins->role = $request->role;
            $admins->save();
     
            return redirect()->route('admin.index')
