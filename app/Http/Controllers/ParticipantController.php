@@ -12,13 +12,13 @@ class ParticipantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(    )
+    public function index()
     {
         $siswas = Participant::all();
 
-        return view('siswa.index', [
+        return view('dataSiswa', [
             'siswas' => $siswas,
-            'menu' => 'siswa'
+            'menu' => 'Data Siswa - Web Monitoring'
         ]);
     }
 
@@ -87,25 +87,25 @@ class ParticipantController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $request->validate([
-        'nomer_induk' => ['required'],
-        'nama_siswa' => 'required',
-        'jenis_kelamin' => 'required',
-        'telepon' => 'required',
-        'alamat' => 'required',
-        'email' => 'required',
-       ]);
+        $request->validate([
+            'nomer_induk' => ['required'],
+            'nama_siswa' => 'required',
+            'jenis_kelamin' => 'required',
+            'telepon' => 'required',
+            'alamat' => 'required',
+            'email' => 'required',
+        ]);
 
-       $siswas = Participant::find($id);
-       $siswas->nomer_induk = $request->nomer_induk;
-       $siswas->nama_siswa = $request->nama_siswa;
-       $siswas->jenis_kelamin = $request->jenis_kelamin;
-       $siswas->telepon = $request->telepon;
-       $siswas->alamat = $request->alamat;
-       $siswas->email = $request->email;
-       $siswas->save();
+        $siswas = Participant::find($id);
+        $siswas->nomer_induk = $request->nomer_induk;
+        $siswas->nama_siswa = $request->nama_siswa;
+        $siswas->jenis_kelamin = $request->jenis_kelamin;
+        $siswas->telepon = $request->telepon;
+        $siswas->alamat = $request->alamat;
+        $siswas->email = $request->email;
+        $siswas->save();
 
-       return redirect()->route('siswa.index')
+        return redirect()->route('siswa.index')
             ->with('success_message', 'Data siswa telah berhasil diperbarui.');
     }
 

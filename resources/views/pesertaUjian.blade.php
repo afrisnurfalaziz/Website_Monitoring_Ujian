@@ -50,11 +50,12 @@
                                     <th>ID Peserta</th>
                                     <th>Nama</th>
                                     <th>Jenis Kelamin</th>
-                                    <th>Email</th>
+                                    <th>E-mail</th>
                                     <th>Nomor Telepon</th>
                                     <th>Alamat</th>
                                     <th>Created</th>
                                     <th>Updated</th>
+                                    <th>Opsi</th>
                                 </tr>
                             </thead>
 
@@ -63,20 +64,20 @@
                             @php
                             $count = 1;
                             @endphp
-                            @foreach ($ujians as $data)
+                            @foreach ($pesertaUjian as $data)
 
                             <tr>
                                 <td>{{ $count++ }}</td>
                                 <td>{{ $data->id }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->gender }}</td>
-                                <td>{{ $data->email }}</td>
-                                <td>{{ $data->phone }}</td>
-                                <td>{{ $data->address }}</td>
+                                <td>{{ $data->participant->name }}</td>
+                                <td>{{ $data->participant->gender }}</td>
+                                <td>{{ $data->participant->email }}</td>
+                                <td>{{ $data->participant->phone }}</td>
+                                <td>{{ $data->participant->address }}</td>
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                                 <td>
-                                    <a href=# class="btn btn-warning btn-xs mb-2" href="">
+                                    <!-- <a href=# class="btn btn-warning btn-xs mb-2" href="">
                                         Peserta Ujian
                                     </a>
                                     <a href=# class=" btn btn-primary btn-xs" data-toggle="modal" data-target="#editData{{ $data->id }}">
@@ -84,7 +85,7 @@
                                     </a>
                                     <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
-                                    </a>
+                                    </a> -->
                                 </td>
                             </tr>
                             @endforeach
@@ -120,32 +121,46 @@
                             <div class="card">
                                 <div class="card-body">
 
-                                    {{-- id ujian --}}
+                                    {{-- id peserta --}}
                                     <div class="form-group">
-                                        <label for="exampleInputIdUjian">ID Ujian</label>
-                                        <input type="text" class="form-control @error('id_ujian') is-invalid @enderror" id="exampleInputIdUjian" placeholder="ID Ujian" name="id_ujian" value="{{old('id_ujian')}}">
-                                        @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="exampleInputIdPeserta">ID Peserta</label>
+                                        <input type="text" class="form-control @error('id') is-invalid @enderror" id="exampleInputIdPeserta" placeholder="ID Peserta" name="id" value="{{old('id')}}">
+                                        @error('id') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
 
-                                    {{-- nama ujian --}}
+                                    {{-- name --}}
                                     <div class="form-group">
-                                        <label for="exampleInputNamaUjian">Nama Ujian</label>
-                                        <input type="text" class="form-control @error('nama_ujian') is-invalid @enderror" id="exampleInputNama" placeholder="Nama Ujian" name="nama_ujian" value="{{old('nama_ujian')}}">
-                                        @error('nama_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="exampleInputNamaPeserta">Nama</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputNama" placeholder="Nama" name="name" value="{{old('name')}}">
+                                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
 
-                                    {{-- kode ujian --}}
+                                    {{-- jenis kelamin --}}
                                     <div class="form-group">
-                                        <label for="exampleInputKodeUjian">Kode Ujian</label>
-                                        <input type="text" class="form-control @error('kode_ujian') is-invalid @enderror" id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="kode_ujian" value="{{old('kode_ujian')}}">
-                                        @error('kode_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="exampleInputGender">Jenis Kelamin</label>
+                                        <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputGender" placeholder="Pilih Jenis Kelamin" name="gender" value="{{old('gender')}}">
+                                        @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
 
-                                    {{-- tanggal ujian --}}
+                                    {{-- email --}}
                                     <div class="form-group">
-                                        <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
-                                        <input type="text" class="form-control @error('tanggal_ujian') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="tanggal_ujian" value="{{old('tanggal_ujian')}}">
-                                        @error('tanggal_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                        <label for="exampleInputEmail">E-mail Peserta</label>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email Peserta" name="email" value="{{old('email')}}">
+                                        @error('email') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+
+                                    {{-- phone --}}
+                                    <div class="form-group">
+                                        <label for="exampleInputPhone">Nomer telepon</label>
+                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputPhone" placeholder="Masukkan Nomer Telepon" name="phone" value="{{old('phone')}}">
+                                        @error('phone') <span class="text-danger">{{$message}}</span> @enderror
+                                    </div>
+
+                                    {{-- address --}}
+                                    <div class="form-group">
+                                        <label for="exampleInputAddress">Alamat Peserta</label>
+                                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAddress" placeholder="Masukkan Alamat Peserta" name="address" value="{{old('address')}}">
+                                        @error('address') <span class="text-danger">{{$message}}</span> @enderror
                                     </div>
                                 </div>
                             </div>

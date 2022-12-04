@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,9 +17,9 @@ class UserController extends Controller
     {
         $admins = User::all();
 
-        return view('admin.index', [
+        return view('dataAdmin', [
             'admins' => $admins,
-            'menu' => 'admin'
+            'menu' => 'Data Admin - Web Monitoring'
         ]);
     }
 
@@ -96,17 +97,17 @@ class UserController extends Controller
             'email' => 'required',
             'telepon' => 'required',
             'role' => 'required',
-           ]);
-    
-           $admins = User::find($id);
-           $admins->nama_admin = $request->nama_admin;
-           $admins->email = $request->email;
-           $admins->telepon = $request->telepon;
-           $admins->role = $request->role;
-           $admins->save();
-    
-           return redirect()->route('admin.index')
-                ->with('success_message', 'Data admin telah berhasil diperbarui.');
+        ]);
+
+        $admins = User::find($id);
+        $admins->nama_admin = $request->nama_admin;
+        $admins->email = $request->email;
+        $admins->telepon = $request->telepon;
+        $admins->role = $request->role;
+        $admins->save();
+
+        return redirect()->route('admin.index')
+            ->with('success_message', 'Data admin telah berhasil diperbarui.');
     }
 
     /**
@@ -119,8 +120,8 @@ class UserController extends Controller
     {
         $admins = User::find($id);
         if ($id == $request->user()->id)
-        return redirect()->route('admin.index')
-            ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
+            return redirect()->route('admin.index')
+                ->with('error_message', 'Anda tidak dapat menghapus diri sendiri.');
 
         if ($admins) $admins->delete();
         return redirect()->route('admin.index')
