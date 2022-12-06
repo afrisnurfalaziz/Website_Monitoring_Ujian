@@ -15,10 +15,10 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $ujians = Exam::all()->sortByDesc('updated_at');
+        $exams = Exam::all()->sortByDesc('updated_at');
 
         return view('dataUjian', [
-            'ujians' => $ujians,
+            'exams' => $exams,
             'menu' => 'Data Ujian - Web Monitoring'
         ]);
     }
@@ -42,16 +42,16 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_ujian' => ['required', 'unique:ujians'],
-            'nama_ujian' => 'required',
-            'kode_ujian' => ['required', 'unique:ujians'],
-            'tanggal_ujian' => 'required',
+            // 'id_ujian' => ['required', 'unique:exams'],
+            'exam_name' => 'required',
+            'exam_code' => ['required', 'unique:exams'],
+            'exam_date' => 'required',
         ]);
         $array = $request->only([
-            'id_ujian', 'nama_ujian', 'kode_ujian', 'tanggal_ujian'
+             'exam_name', 'exam_code', 'exam_date'
         ]);
-        $ujians = Exam::create($array);
-        return redirect()->route('dataUjian')
+        $exams = Exam::create($array);
+        return redirect()->route('ujian.index')
             ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
@@ -92,20 +92,20 @@ class ExamController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id_ujian' => ['required'],
-            'nama_ujian' => 'required',
-            'kode_ujian' => ['required'],
-            'tanggal_ujian' => 'required',
+            // 'id_ujian' => ['required'],
+            'exam_name' => 'required',
+            'exam_code' => ['required'],
+            'exam_date' => 'required',
         ]);
 
-        $ujians = Exam::find($id);
-        $ujians->id_ujian = $request->id_ujian;
-        $ujians->nama_ujian = $request->nama_ujian;
-        $ujians->kode_ujian = $request->kode_ujian;
-        $ujians->tanggal_ujian = $request->tanggal_ujian;
-        $ujians->save();
+        $exams = Exam::find($id);
+        // $exams->id_ujian = $request->id_ujian;
+        $exams->exam_name = $request->exam_name;
+        $exams->exam_code = $request->exam_code;
+        $exams->exam_date = $request->exam_date;
+        $exams->save();
 
-        return redirect()->route('')
+        return redirect()->route('ujian.index')
             ->with('success_message', 'Data ujian telah berhasil diperbarui.');
     }
 
@@ -117,9 +117,9 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        $ujians = Exam::find($id);
-        if ($ujians) $ujians->delete();
-        return redirect()->route('dataUjian')
+        $exams = Exam::find($id);
+        if ($exams) $exams->delete();
+        return redirect()->route('ujian.index')
             ->with('Delete', 'Berhasil menghapus data.');
     }
 }

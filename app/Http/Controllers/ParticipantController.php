@@ -41,15 +41,14 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomer_induk' => ['required', 'unique:siswas'],
-            'nama_siswa' => 'required',
-            'jenis_kelamin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
             'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
         ]);
         $array = $request->only([
-            'nomer_induk', 'nama_siswa', 'jenis_kelamin', 'telepon', 'alamat', 'email'
+            'name', 'gender', 'phone', 'address', 'email'
         ]);
         $siswas = Participant::create($array);
         return redirect()->route('siswa.index')
@@ -88,21 +87,19 @@ class ParticipantController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nomer_induk' => ['required'],
-            'nama_siswa' => 'required',
-            'jenis_kelamin' => 'required',
-            'telepon' => 'required',
-            'alamat' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
             'email' => 'required',
         ]);
 
         $siswas = Participant::find($id);
-        $siswas->nomer_induk = $request->nomer_induk;
-        $siswas->nama_siswa = $request->nama_siswa;
-        $siswas->jenis_kelamin = $request->jenis_kelamin;
-        $siswas->telepon = $request->telepon;
-        $siswas->alamat = $request->alamat;
+        $siswas->name = $request->name;
+        $siswas->gender = $request->gender;
         $siswas->email = $request->email;
+        $siswas->phone = $request->phone;
+        $siswas->address = $request->address;
         $siswas->save();
 
         return redirect()->route('siswa.index')

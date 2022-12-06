@@ -10,8 +10,8 @@ class Exam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'exam_code',
         'exam_name',
+        'exam_code',
         'exam_date',
     ];
 

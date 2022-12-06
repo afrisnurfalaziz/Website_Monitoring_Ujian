@@ -74,9 +74,9 @@
 
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $data->nama_admin }}</td>
+                                <td>{{ $data->name }}</td>
                                 <td>{{ $data->email }}</td>
-                                <td>{{ $data->telepon }}</td>
+                                <td>{{ $data->phone }}</td>
                                 <td>{{ $data->role }}</td>
 
                                 <td>
@@ -107,8 +107,8 @@
                                                 {{-- nama admin --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputNamaAdmin">Nama Admin</label>
-                                                    <input type="text" class="form-control @error('nama_admin') is-invalid @enderror" id="exampleInputNamaAdmin" placeholder="Nama Admin" name="nama_admin" value="{{$data->nama_admin ?? old('nama_admin')}}">
-                                                    @error('nama_admin') <span class="text-danger">{{$message}}</span> @enderror
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputNamaAdmin" placeholder="Nama Admin" name="name" value="{{$data->name ?? old('name')}}">
+                                                    @error('name') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
                                                 {{-- email --}}
@@ -118,11 +118,11 @@
                                                     @error('email') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
-                                                {{-- telepon --}}
+                                                {{-- phone --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputTelepon">Telepon</label>
-                                                    <input type="text" class="form-control @error('telepon') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="telepon" value="{{$data->telepon ?? old('telepon')}}">
-                                                    @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
+                                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="phone" value="{{$data->phone ?? old('phone')}}">
+                                                    @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
                                                 {{-- role
@@ -136,10 +136,10 @@
 
                                             {{-- role --}}
                                             <div class="form-group">
-                                                <label for="exampleInputStatus">Role</label>
-                                                <select class="form-control" name="status" id="status" required>
+                                                <label for="role">Role</label>
+                                                <select class="form-control" name="role" id="role" required>
                                                     <option value="1">Super Admin</option>
-                                                    <option value="0">Admin</option>
+                                                    <option value="2">Admin</option>
                                                 </select>
                                             </div>
 
@@ -182,8 +182,8 @@
                     {{-- nama admin --}}
                     <div class="form-group">
                         <label for="exampleInputNamaAdmin">Nama Admin</label>
-                        <input type="text" class="form-control @error('nama_admin') is-invalid @enderror" id="exampleInputNamaAdmin" placeholder="Nama Admin" name="nama_admin" value="{{old('nama_admin')}}">
-                        @error('nama_admin') <span class="text-danger">{{$message}}</span> @enderror
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputNamaAdmin" placeholder="Nama Admin" name="name" value="{{old('name')}}">
+                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- email --}}
@@ -193,11 +193,11 @@
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
-                    {{-- telepon --}}
+                    {{-- phone --}}
                     <div class="form-group">
                         <label for="exampleInputTelepon">Telepon</label>
-                        <input type="text" class="form-control @error('telepon') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="telepon" value="{{old('telepon')}}">
-                        @error('telepon') <span class="text-danger">{{$message}}</span> @enderror
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="phone" value="{{old('phone')}}">
+                        @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- role
@@ -211,8 +211,8 @@
 
             {{-- role --}}
             <div class="form-group">
-                <label for="exampleInputStatus">Role</label>
-                <select class="form-control" name="status" id="status" required>
+                <label for="role">Role</label>
+                <select class="form-control" name="role" id="role" required>
                     <option value="1">Super Admin</option>
                     <option value="0">Admin</option>
                 </select>
@@ -233,7 +233,7 @@
                 </div>
             </div>
 
-            {{-- pass confirm --}}
+            {{-- pass confirm
 
             <div class="row mb-3">
                 <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
@@ -241,7 +241,7 @@
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
-            </div>
+            </div> --}}
 
         </div>
         <div class="modal-footer">
