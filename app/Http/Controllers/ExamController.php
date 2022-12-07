@@ -66,20 +66,36 @@ class ExamController extends Controller
     {
         $pesertaUjian = ExamReg::where('exam_id', $id)->get()->sortByDesc('updated_at');
         $peserta = Participant::all()->sortByDesc('updated_at');
+        $examId = $id;
 
         return view('pesertaUjian', [
             'pesertaUjian' => $pesertaUjian,
             'peserta' => $peserta,
+            'examId' => $examId,
             'menu' => 'Peserta Ujian - Web Monitoring'
         ]);
     }
 
-    public function addParticipant()
+    public function addParticipant(Request $request)
     {
+        $jumlah =  count($request->participant);
+        for ($i = 0; $i < $jumlah; $i++) {
+            $item = $request->participant[$i];
+            ExamReg::create([
+                'participant_id' => $item,
+                'exam_id' => $request->exam_id,
+            ]);
+        }
 
-        return view('pesertaUjian', [
-            'menu' => 'Peserta Ujian - Web Monitoring'
-        ]);
+        // foreach ($request->peserta as $item) {
+        //     ExamReg::create([
+        //         'participant_id' => $item,
+        //         'exam_id' => $request->exam_id,
+        //     ]);
+        // }
+
+        return redirect()->route('ujian.index')
+            ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
     /**

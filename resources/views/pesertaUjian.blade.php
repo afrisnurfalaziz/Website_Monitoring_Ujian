@@ -159,9 +159,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="{{ url('ujian') }}" method="post">
-                    @csrf
+            <form action="{{ url('add-participant') }}" method="post">
+                @csrf
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -169,23 +169,24 @@
                                     <div class="form-group">
                                         @foreach ($peserta as $data)
                                         <div class="form-check">
-                                            <input class="form-check-input" name="peserta" type="checkbox" value="{{ $data->id }}" id="flexCheckDefault{{ $data->id }}">
+                                            <input class="form-check-input" name="participant[]" type="checkbox" value="{{ $data->id }}" id="flexCheckDefault{{ $data->id }}">
                                             <label class="form-check-label" for="flexCheckDefault{{ $data->id }}">
                                                 {{ $data->name }}
                                             </label>
                                         </div>
                                         @endforeach
+                                        <input type="hidden" value="{{ $examId }}" name="exam_id">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
