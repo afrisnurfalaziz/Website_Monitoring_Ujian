@@ -253,6 +253,11 @@ select.form-control:not([size]):not([multiple]) {
   height: calc(2.25rem + 6px);
 }
 
+.col- .card {
+  width: 18rem;
+  margin: 1rem;
+}
+
 .form-control.creditcard {
   background-position: 98%;
   background-repeat: no-repeat;
