@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Exam;
 use App\Models\ExamReg;
+use App\Models\Participant;
 
 class ExamController extends Controller
 {
@@ -64,9 +65,19 @@ class ExamController extends Controller
     public function show($id)
     {
         $pesertaUjian = ExamReg::where('exam_id', $id)->get()->sortByDesc('updated_at');
+        $peserta = Participant::all()->sortByDesc('updated_at');
 
         return view('pesertaUjian', [
             'pesertaUjian' => $pesertaUjian,
+            'peserta' => $peserta,
+            'menu' => 'Peserta Ujian - Web Monitoring'
+        ]);
+    }
+
+    public function addParticipant()
+    {
+
+        return view('pesertaUjian', [
             'menu' => 'Peserta Ujian - Web Monitoring'
         ]);
     }
