@@ -77,15 +77,9 @@
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                                 <td>
-                                    <!-- <a href=# class="btn btn-warning btn-xs mb-2" href="">
-                                        Peserta Ujian
-                                    </a>
-                                    <a href=# class=" btn btn-primary btn-xs" data-toggle="modal" data-target="#editData{{ $data->id }}">
-                                        Edit
-                                    </a>
                                     <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
-                                    </a> -->
+                                    </a>
                                 </td>
                             </tr>
 
@@ -166,58 +160,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('ujian')}}" method="post">
+                <form action="{{ url('ujian') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-
-                                    {{-- id peserta --}}
                                     <div class="form-group">
-                                        <label for="exampleInputIdPeserta">ID Peserta</label>
-                                        <input type="text" class="form-control @error('id') is-invalid @enderror" id="exampleInputIdPeserta" placeholder="ID Peserta" name="id" value="{{old('id')}}">
-                                        @error('id') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-
-                                    {{-- name --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputNamaPeserta">Nama</label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputNama" placeholder="Nama" name="name" value="{{old('name')}}">
-                                        @error('name') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-
-                                    {{-- jenis kelamin --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputGender">Jenis Kelamin</label>
-                                        <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputGender" placeholder="Pilih Jenis Kelamin" name="gender" value="{{old('gender')}}">
-                                        @error('gender') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-
-                                    {{-- email --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail">E-mail Peserta</label>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email Peserta" name="email" value="{{old('email')}}">
-                                        @error('email') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-
-                                    {{-- phone --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputPhone">Nomer telepon</label>
-                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputPhone" placeholder="Masukkan Nomer Telepon" name="phone" value="{{old('phone')}}">
-                                        @error('phone') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
-
-                                    {{-- address --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputAddress">Alamat Peserta</label>
-                                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAddress" placeholder="Masukkan Alamat Peserta" name="address" value="{{old('address')}}">
-                                        @error('address') <span class="text-danger">{{$message}}</span> @enderror
+                                        @foreach ($peserta as $data)
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="peserta" type="checkbox" value="{{ $data->id }}" id="flexCheckDefault{{ $data->id }}">
+                                            <label class="form-check-label" for="flexCheckDefault{{ $data->id }}">
+                                                {{ $data->name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
