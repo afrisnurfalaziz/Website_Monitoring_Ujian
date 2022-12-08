@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Admin;
 
 class UserController extends Controller
 {
@@ -13,6 +14,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['auth','admin']);
+    }
     public function index()
     {
         $admins = User::all();
