@@ -110,6 +110,7 @@
             <form action="{{ url('add-participant') }}" method="post">
                 @csrf
                 <div class="modal-body">
+
                     <table id="" class="table table-hover table-bordered table-stripped">
                         <thead>
                             <tr>
@@ -131,17 +132,17 @@
                             @foreach ($peserta as $data)
 
                             <label for="select{{$data->id}}">
-                                <input type="hidden" value="{{ $examId }}" name="exam_id">
+                                <input type="hidden" value="{{ $data->id }}" name="exam_id">
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="participant[]" id="select{{$data->id}}" value="{{ $data->id }}">
                                     </td>
                                     <td>{{ $data->id }}</td>
-                                    <td>{{ $data->participant->name }}</td>
-                                    <td>{{ $data->participant->gender }}</td>
-                                    <td>{{ $data->participant->email }}</td>
-                                    <td>{{ $data->participant->phone }}</td>
-                                    <td>{{ $data->participant->address }}</td>
+                                    <td>{{ $data->name }}</td>
+                                    <td>{{ $data->gender }}</td>
+                                    <td>{{ $data->email }}</td>
+                                    <td>{{ $data->phone }}</td>
+                                    <td>{{ $data->address }}</td>
                                 </tr>
                             </label>
 
