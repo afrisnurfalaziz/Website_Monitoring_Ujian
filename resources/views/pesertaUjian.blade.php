@@ -110,10 +110,10 @@
             <form action="{{ url('add-participant') }}" method="post">
                 @csrf
                 <div class="modal-body">
-                    <table id="addPesertaUjian" class="table table-hover table-bordered table-stripped">
+                    <table id="" class="table table-hover table-bordered table-stripped">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>#</th>
                                 <th>ID Peserta</th>
                                 <th>Nama</th>
                                 <th>Jenis Kelamin</th>
@@ -124,24 +124,29 @@
                         </thead>
 
                         {{-- tes data --}}
-                        {{-- <tbody> --}}
-                        @php
-                        $count = 1;
-                        @endphp
-                        @foreach ($pesertaUjian as $data)
+                        <tbody>
+                            @php
+                            $count = 1;
+                            @endphp
+                            @foreach ($peserta as $data)
 
-                        <tr>
-                            <td></td>
-                            <td>{{ $data->id }}</td>
-                            <td>{{ $data->participant->name }}</td>
-                            <td>{{ $data->participant->gender }}</td>
-                            <td>{{ $data->participant->email }}</td>
-                            <td>{{ $data->participant->phone }}</td>
-                            <td>{{ $data->participant->address }}</td>
-                        </tr>
+                            <label for="select{{$data->id}}">
+                                <input type="hidden" value="{{ $examId }}" name="exam_id">
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="participant[]" id="select{{$data->id}}" value="{{ $data->id }}">
+                                    </td>
+                                    <td>{{ $data->id }}</td>
+                                    <td>{{ $data->participant->name }}</td>
+                                    <td>{{ $data->participant->gender }}</td>
+                                    <td>{{ $data->participant->email }}</td>
+                                    <td>{{ $data->participant->phone }}</td>
+                                    <td>{{ $data->participant->address }}</td>
+                                </tr>
+                            </label>
 
-                        @endforeach
-                        {{-- </tbody> --}}
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">

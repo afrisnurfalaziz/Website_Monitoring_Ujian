@@ -19,13 +19,7 @@
         <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
       </a>
       <div class="dropdown-menu dropdown-menu-right pr-3">
-
         <button onclick="alert()" class="btn btn-outline-danger btn-block mx-2"><i class="fa fa-fw fa-power-off text-red mr-2"></i>Logout</button>
-
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-          @csrf
-        </form>
       </div>
     </li>
   </ul>

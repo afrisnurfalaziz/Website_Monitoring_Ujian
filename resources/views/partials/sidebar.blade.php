@@ -65,12 +65,13 @@ $admin = 'active';
             <li class="nav-link {{ $siswa }}"><a class="nav-link" href="/siswa"><i class="fas fa-users"></i> <span>Data Siswa</span></a></li>
             <li class="nav-link {{ $admin }}"><a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> <span>Data Admin</span></a></li>
 
+            <!-- <li class="nav-link {{ $admin }}">
+                <button onclick="alert()" class="btn btn-outline-danger btn-block mx-2"><i class="fa fa-fw fa-power-off text-red mr-2"></i>Logout</button>
 
-            {{-- <li class="nav-item">
-            <a href="/home"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-            <a href="/alumni"><i class="fas fa-folder-open"></i><span>Data Alumni</span></a>
-            <a href="/admin"><i class="fas fa-user-cog"></i><span>Data Admin</span></a>
-          </li> --}}
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li> -->
         </ul>
     </aside>
 </div>

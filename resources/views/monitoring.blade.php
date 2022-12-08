@@ -14,8 +14,6 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>ID</th>
-                                    <th>ID Reg Ujian</th>
                                     <th>Screenshot</th>
                                     <th>Look</th>
                                     <th>Waktu</th>
@@ -33,9 +31,11 @@
 
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                <td>{{ $data->id }}</td>
-                                <td>{{ $data->exam_reg_id }}</td>
-                                <td>{{ $data->screenshot }}</td>
+                                <td>
+                                    <a href="{{ $data->screenshot }}" target="_blank">
+                                        <img src="{{ $data->screenshot }}" style="width: 60px;" alt="">
+                                    </a>
+                                </td>
                                 <td>{{ $data->look_to }}</td>
                                 <td>{{ $data->time }}</td>
                                 <td>{{ $data->created_at }}</td>
