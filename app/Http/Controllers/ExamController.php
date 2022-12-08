@@ -94,7 +94,7 @@ class ExamController extends Controller
         //     ]);
         // }
 
-        return redirect()->route('ujian.index')
+        return redirect('ujian/'.$request->exam_id)
             ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
     }
 
@@ -147,6 +147,15 @@ class ExamController extends Controller
         $exams = Exam::find($id);
         if ($exams) $exams->delete();
         return redirect()->route('ujian.index')
+            ->with('Delete', 'Berhasil menghapus data.');
+    }
+
+    public function destroyParticipant($id)
+    {
+        $exams = ExamReg::find($id);
+        if ($exams) $exams->delete();
+        
+        return redirect('ujian/'.$exams->exam->id)
             ->with('Delete', 'Berhasil menghapus data.');
     }
 }

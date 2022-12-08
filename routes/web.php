@@ -23,7 +23,11 @@ Route::get('/', function () {
 
 Route::resource('/ujian', App\Http\Controllers\ExamController::class)
     ->middleware('auth');
+
 Route::post('/add-participant', [App\Http\Controllers\ExamController::class, 'addParticipant'])
+    ->middleware('auth');
+
+Route::delete('/destroy-participant/{id}', [App\Http\Controllers\ExamController::class, 'destroyParticipant'])
     ->middleware('auth');
 
 Route::resource('/siswa', App\Http\Controllers\ParticipantController::class)

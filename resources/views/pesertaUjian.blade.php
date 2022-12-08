@@ -77,7 +77,7 @@
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                                 <td>
-                                    <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{url('destroy-participant', $data->id)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         Delete
                                     </a>
                                 </td>
@@ -173,9 +173,9 @@
                                             <label class="form-check-label" for="flexCheckDefault{{ $data->id }}">
                                                 {{ $data->name }}
                                             </label>
+                                            <input type="hidden" value="{{ $examId }}" name="exam_id">
                                         </div>
                                         @endforeach
-                                        <input type="hidden" value="{{ $examId }}" name="exam_id">
                                     </div>
                                 </div>
                             </div>
