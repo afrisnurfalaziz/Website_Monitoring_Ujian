@@ -1,7 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
+
+
 <section class="section">
+
+    @if ($message = Session::get('denied_message'))
+    <script>
+        Swal.fire(
+            'Gagal!',
+            '{{ $message }}'
+        )
+    </script>
+    @endif
+
+
     <div class="section-header">
         <h1>Dashboard</h1>
     </div>

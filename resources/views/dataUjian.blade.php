@@ -33,6 +33,14 @@
         )
     </script>
     @endif
+    @if ($message = Session::get('denied_message'))
+    <script>
+        Swal.fire(
+            'Gagal!',
+            '{{ $message }}'
+        )
+    </script>
+    @endif
 
     <div class="row">
         <div class="col-12">
