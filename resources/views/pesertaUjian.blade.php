@@ -77,13 +77,8 @@
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                                 <td>
-<<<<<<< HEAD
-                                    <a href="{{url('destroy-participant', $data->id)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
-=======
                                     <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         <i class="fas fa-trash-alt"></i>
->>>>>>> 11e9877a1dcb22e56ca47355393a5eeac8c0ab24
                                     </a>
                                 </td>
                             </tr>
