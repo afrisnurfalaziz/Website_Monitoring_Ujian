@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\ExamReg;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -61,7 +62,12 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        $examregs = ExamReg::find($id);
+
+        return view('monitoring', [
+            'examregs' => $examregs,
+            'menu' => 'Monitoring Ujian - Web Monitoring'
+        ]);
     }
 
     /**

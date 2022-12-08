@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h1 class="card-title">0</h1>
                         <h5 class="card-text">Matematika</h5>
-                        <a href="#" class="btn btn-primary">Detail</a>
+                        <a href="{{url('home/' . $data->id)}}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>

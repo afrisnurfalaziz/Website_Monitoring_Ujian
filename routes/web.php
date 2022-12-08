@@ -43,7 +43,7 @@ Route::resource('/admin', App\Http\Controllers\UserController::class)
 // })->name('home')->middleware('auth');;
 // Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/home', App\Http\Controllers\HomeController::class);
 
 // Route::resource('alumni', \App\Http\Controllers\UjianController::class)
 //     ->middleware('auth');

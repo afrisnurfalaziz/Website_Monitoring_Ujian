@@ -7,6 +7,14 @@ $siswa = '';
 $admin = '';
 @endphp
 @break
+@case('Monitoring Ujian - Web Monitoring')
+@php
+$home = 'active';
+$ujian = '';
+$siswa = '';
+$admin = '';
+@endphp
+@break
 @case('Data Ujian - Web Monitoring')
 @php
 $home = '';

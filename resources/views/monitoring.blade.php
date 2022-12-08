@@ -10,16 +10,14 @@
                 <div class="class-body">
                     <div class="container mt-4 mb-4">
                         <h1>Monitoring Ujian</h1>
-
-                        <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#addData"> <i class="fas fa-user-plus"></i></button>
-
                         <table class="table table-hover table-bordered table-stripped" id="monitoringUjian">
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    {{-- <th>ID</th> --}}
+                                    <th>ID</th>
                                     <th>ID Reg Ujian</th>
                                     <th>Screenshot</th>
+                                    <th>Look</th>
                                     <th>Waktu</th>
                                     <th>Dibuat</th>
                                     <th>Diupdate</th>
@@ -31,14 +29,15 @@
                             @php
                             $count = 1;
                             @endphp
-                            @foreach ($exams as $data)
+                            @foreach ($examregs->monitorings->sortByDesc('id') as $data)
 
                             <tr>
                                 <td>{{ $count++ }}</td>
-                                {{-- <td>{{ $data->id }}</td> --}}
+                                <td>{{ $data->id }}</td>
                                 <td>{{ $data->exam_reg_id }}</td>
                                 <td>{{ $data->screenshot }}</td>
-                                <td>{{ $data->look_to_me }}</td>
+                                <td>{{ $data->look_to }}</td>
+                                <td>{{ $data->time }}</td>
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                             </tr>

@@ -1872,7 +1872,7 @@ h6 .badge {
 .btn-danger.disabled:hover,
 .btn-danger.disabled:focus,
 .btn-danger.disabled:active {
-  background-color: #fb170b !important;
+  background-color: #fc544b !important;
 }
 
 .btn-outline-danger:hover,
@@ -1881,7 +1881,7 @@ h6 .badge {
 .btn-outline-danger.disabled:hover,
 .btn-outline-danger.disabled:focus,
 .btn-outline-danger.disabled:active {
-  background-color: #fb160a !important;
+  background-color: #fc544b !important;
   color: #fff !important;
 }
 
