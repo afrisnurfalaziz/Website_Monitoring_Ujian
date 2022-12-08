@@ -75,9 +75,8 @@
                                     <a href=# class=" btn btn-primary btn-xs" data-toggle="modal" data-target="#editData{{ $data->id }}">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="{{route('ujian.destroy', $data)}}"
-                                     onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                     <i class="fas fa-trash-alt"></i>
+                                    <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                        <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -100,45 +99,45 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputIdUjian">ID Ujian</label>
                                                     <input type="text" class="form-control @error('id_ujian') is-invalid @enderror" id="exampleInputIdUjian" placeholder="ID Ujian" name="id_ujian" value="{{$data->id_ujian ?? old('id_ujian')}}">
-                                                    @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
-                                                </div> --}}
+                                                @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                            </div> --}}
 
-                                                {{-- nama ujian --}}
-                                                <div class="form-group">
-                                                    <label for="exampleInputNamaUjian">Nama Ujian</label>
-                                                    <input type="text" class="form-control @error('exam_name') is-invalid @enderror" id="exampleInputNamaUjian" placeholder="Nama Ujian" name="exam_name" value="{{$data->exam_name ?? old('exam_name')}}">
-                                                    @error('exam_name') <span class="text-danger">{{$message}}</span> @enderror
-                                                </div>
-
-                                                {{-- kode ujian --}}
-                                                <div class="form-group">
-                                                    <label for="exampleInputKodeUjian">Kode Ujian</label>
-                                                    <input type="text" class="form-control @error('exam_code') is-invalid @enderror" id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="exam_code" value="{{$data->exam_code ?? old('exam_code')}}">
-                                                    @error('exam_code') <span class="text-danger">{{$message}}</span> @enderror
-                                                </div>
-
-                                                {{-- tanggal ujian --}}
-                                                <div class="form-group">
-                                                    <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
-                                                    <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{$data->exam_date ?? old('exam_date')}}">
-                                                    @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
-                                                </div>
+                                            {{-- nama ujian --}}
+                                            <div class="form-group">
+                                                <label for="exampleInputNamaUjian">Nama Ujian</label>
+                                                <input type="text" class="form-control @error('exam_name') is-invalid @enderror" id="exampleInputNamaUjian" placeholder="Nama Ujian" name="exam_name" value="{{$data->exam_name ?? old('exam_name')}}">
+                                                @error('exam_name') <span class="text-danger">{{$message}}</span> @enderror
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+
+                                            {{-- kode ujian --}}
+                                            <div class="form-group">
+                                                <label for="exampleInputKodeUjian">Kode Ujian</label>
+                                                <input type="text" class="form-control @error('exam_code') is-invalid @enderror" id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="exam_code" value="{{$data->exam_code ?? old('exam_code')}}">
+                                                @error('exam_code') <span class="text-danger">{{$message}}</span> @enderror
                                             </div>
-                                        </form>
+
+                                            {{-- tanggal ujian --}}
+                                            <div class="form-group">
+                                                <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
+                                                <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{$data->exam_date ?? old('exam_date')}}">
+                                                @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
+                                            </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                            @endforeach
-                            {{-- </tbody> --}}
-                        </table>
                     </div>
+                    @endforeach
+                    {{-- </tbody> --}}
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -169,40 +168,40 @@
                                     <div class="form-group">
                                         <label for="exampleInputIdUjian">ID Ujian</label>
                                         <input type="text" class="form-control @error('id_ujian') is-invalid @enderror" id="exampleInputIdUjian" placeholder="ID Ujian" name="id_ujian" value="{{old('id_ujian')}}">
-                                        @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div> --}}
+                                    @error('id_ujian') <span class="text-danger">{{$message}}</span> @enderror
+                                </div> --}}
 
-                                    {{-- nama ujian --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputNamaUjian">Nama Ujian</label>
-                                        <input type="text" class="form-control @error('exam_name') is-invalid @enderror" id="exampleInputNama" placeholder="Nama Ujian" name="exam_name" value="{{old('exam_name')}}">
-                                        @error('exam_name') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
+                                {{-- nama ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputNamaUjian">Nama Ujian</label>
+                                    <input type="text" class="form-control @error('exam_name') is-invalid @enderror" id="exampleInputNama" placeholder="Nama Ujian" name="exam_name" value="{{old('exam_name')}}">
+                                    @error('exam_name') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
 
-                                    {{-- kode ujian --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputKodeUjian">Kode Ujian</label>
-                                        <input type="text" class="form-control @error('exam_code') is-invalid @enderror" id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="exam_code" value="{{old('exam_code')}}">
-                                        @error('exam_code') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
+                                {{-- kode ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputKodeUjian">Kode Ujian</label>
+                                    <input type="text" class="form-control @error('exam_code') is-invalid @enderror" id="exampleInputKodeUjian" placeholder="Masukkan Kode Ujian" name="exam_code" value="{{old('exam_code')}}">
+                                    @error('exam_code') <span class="text-danger">{{$message}}</span> @enderror
+                                </div>
 
-                                    {{-- tanggal ujian --}}
-                                    <div class="form-group">
-                                        <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
-                                        <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{old('exam_date')}}">
-                                        @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
-                                    </div>
+                                {{-- tanggal ujian --}}
+                                <div class="form-group">
+                                    <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
+                                    <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{old('exam_date')}}">
+                                    @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
     </div>
+</div>
 </div>
 
 <script>
