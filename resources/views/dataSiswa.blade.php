@@ -76,10 +76,10 @@
 
                                 <td>
                                     <a href=# class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editDataSiswa{{ $data->id }}">
-                                        Edit
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="{{route('siswa.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
-                                        Delete
+                                        <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
                             </tr>
@@ -112,7 +112,7 @@
                                                     <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="gender" value="{{$data->gender ?? old('gender')}}">
                                                     @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
-                                                
+
                                                 {{-- email --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail">E-mail</label>
@@ -184,7 +184,7 @@
                         <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="gender" value="{{old('gender')}}">
                         @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-                    
+
                     {{-- email --}}
                     <div class="form-group">
                         <label for="exampleInputEmail">E-mail</label>
