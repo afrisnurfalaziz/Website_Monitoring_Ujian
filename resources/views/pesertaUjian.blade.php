@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 
-@include('core');
+@include('core')
 
 <section class="">
     @if ($message = Session::get('Delete'))

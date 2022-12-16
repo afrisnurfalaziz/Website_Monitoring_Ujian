@@ -2,6 +2,7 @@
 
 @section('content')
 
+@include('core')
 
 <section class="section">
 

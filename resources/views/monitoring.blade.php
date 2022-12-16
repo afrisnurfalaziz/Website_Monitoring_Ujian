@@ -64,7 +64,12 @@
         "order": [
             [0, 'asc']
         ],
-        "columnDefs": [{
+        "columnDefs": [
+            {
+                "targets": [0],
+                "width": "10px"
+            },
+            {
                 "targets": [1],
                 "orderable": false
             },
