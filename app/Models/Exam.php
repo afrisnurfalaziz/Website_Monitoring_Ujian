@@ -19,4 +19,9 @@ class Exam extends Model
     {
         return $this->hasMany(ExamReg::class);
     }
+
+    public function monitorings()
+    {
+        return $this->hasMany(Monitoring::class);
+    }
 }

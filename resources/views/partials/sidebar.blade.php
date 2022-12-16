@@ -1,5 +1,5 @@
 @switch($menu)
-@case('Home - Web Monitoring')
+@case('Home - Proctor AI')
 @php
 $home = 'active';
 $ujian = '';
@@ -7,7 +7,7 @@ $siswa = '';
 $admin = '';
 @endphp
 @break
-@case('Monitoring Ujian - Web Monitoring')
+@case('Monitoring Ujian - Proctor AI')
 @php
 $home = 'active';
 $ujian = '';
@@ -15,7 +15,7 @@ $siswa = '';
 $admin = '';
 @endphp
 @break
-@case('Data Ujian - Web Monitoring')
+@case('Data Ujian - Proctor AI')
 @php
 $home = '';
 $ujian = 'active';
@@ -23,7 +23,7 @@ $siswa = '';
 $admin = '';
 @endphp
 @break
-@case('Peserta Ujian - Web Monitoring')
+@case('Peserta Ujian - Proctor AI')
 @php
 $home = '';
 $ujian = 'active';
@@ -31,7 +31,7 @@ $siswa = '';
 $admin = '';
 @endphp
 @break
-@case('Data Siswa - Web Monitoring')
+@case('Data Siswa - Proctor AI')
 @php
 $home = '';
 $ujian = '';
@@ -39,7 +39,7 @@ $siswa = 'active';
 $admin = '';
 @endphp
 @break
-@case('Data Admin - Web Monitoring')
+@case('Data Admin - Proctor AI')
 @php
 $home = '';
 $ujian = '';
@@ -53,10 +53,10 @@ $admin = 'active';
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="/home">Monitoring</a>
+            <a href="/home">Proctor AI</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/home">WMU</a>
+            <a href="/home">P OA</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Menu Navigation</li>

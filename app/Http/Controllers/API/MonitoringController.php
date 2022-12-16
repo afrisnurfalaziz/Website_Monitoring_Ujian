@@ -26,6 +26,7 @@ class MonitoringController extends Controller
 
         try {
             $request->validate([
+                'exam_id' => 'required',
                 'exam_reg_id' => 'required',
                 'look_to' => 'required',
                 'time' => 'required',
@@ -39,6 +40,7 @@ class MonitoringController extends Controller
                 $image->move(public_path('assets/images/monitoring/'), $new_image);
 
                 $data = Monitoring::create([
+                    'exam_id' => $request->exam_id,
                     'exam_reg_id' => $request->exam_reg_id,
                     'screenshot' => $new_image,
                     'look_to' => $request->look_to,

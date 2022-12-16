@@ -126,12 +126,12 @@
                                             {{-- tanggal ujian --}}
                                             <div class="form-group">
                                                 <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
-                                                <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{$data->exam_date ?? old('exam_date')}}">
+                                                <input type="date" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{$data->exam_date ?? old('exam_date')}}">
                                                 @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
                                     </form>
                                 </div>
@@ -193,7 +193,7 @@
                                 {{-- tanggal ujian --}}
                                 <div class="form-group">
                                     <label for="exampleInputTanggalUjian">Tanggal Ujian</label>
-                                    <input type="text" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{old('exam_date')}}">
+                                    <input type="date" class="form-control @error('exam_date') is-invalid @enderror" id="exampleInputTanggalUjian" placeholder="Masukkan Tanggal Ujian" name="exam_date" value="{{old('exam_date')}}">
                                     @error('exam_date') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@ class UserController extends Controller
 
         return view('dataAdmin', [
             'admins' => $admins,
-            'menu' => 'Data Admin - Web Monitoring'
+            'menu' => 'Data Admin - Proctor AI'
         ]);
     }
 

@@ -12,6 +12,7 @@ class Monitoring extends Model
     use HasFactory;
 
     protected $fillable = [
+        'exam_id',
         'exam_reg_id',
         'screenshot',
         'look_to',

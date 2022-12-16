@@ -18,7 +18,7 @@ class ParticipantController extends Controller
 
         return view('dataSiswa', [
             'siswas' => $siswas,
-            'menu' => 'Data Siswa - Web Monitoring'
+            'menu' => 'Data Siswa - Proctor AI'
         ]);
     }
 

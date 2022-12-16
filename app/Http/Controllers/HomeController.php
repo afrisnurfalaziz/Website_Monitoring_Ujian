@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\ExamReg;
+use App\Models\Monitoring;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,10 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $exams = Exam::all()->sortByDesc('created_at');
+        $exams = Exam::all()->sortByDesc('updated_at');
 
         return view('home', [
-            'menu' => 'Home - Web Monitoring',
+            'menu' => 'Home - Proctor AI',
             'exams' => $exams,
         ]);
     }
@@ -62,11 +63,15 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $examregs = ExamReg::find($id);
+        $exam = Exam::find($id);
+        $examRegs = ExamReg::where('exam_id', $id)->orderBy('id')->get();
+        $monitorings = Monitoring::where('exam_id', $id)->orderBy('id')->get();
 
         return view('monitoring', [
-            'examregs' => $examregs,
-            'menu' => 'Monitoring Ujian - Web Monitoring'
+            'exam' => $exam,
+            'examRegs' => $examRegs,
+            'monitorings' => $monitorings,
+            'menu' => 'Monitoring Ujian - Proctor AI'
         ]);
     }
 

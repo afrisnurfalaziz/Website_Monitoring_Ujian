@@ -77,7 +77,7 @@
                                 <td>{{ $data->created_at }}</td>
                                 <td>{{ $data->updated_at }}</td>
                                 <td>
-                                    <a href="{{route('ujian.destroy', $data)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    <a href="{{ url('destroy-participant/' . $data->id) }}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
@@ -129,29 +129,55 @@
                             @php
                             $count = 1;
                             @endphp
+
                             @foreach ($peserta as $data)
 
-                            <label for="select{{$data->id}}">
-                                <input type="hidden" value="{{ $data->id }}" name="exam_id">
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" name="participant[]" id="select{{$data->id}}" value="{{ $data->id }}">
-                                    </td>
-                                    <td>{{ $data->id }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td>{{ $data->gender }}</td>
-                                    <td>{{ $data->email }}</td>
-                                    <td>{{ $data->phone }}</td>
-                                    <td>{{ $data->address }}</td>
-                                </tr>
-                            </label>
+
+                            @if (count($data->examRegs->where('exam_id', $examId)) == 0)
+                            <input type="hidden" value="{{ $examId }}" name="exam_id">
+                            <tr>
+                                <td>
+                                    <input type="checkbox" id="checkParticipant{{ $data->id }}" name="participant[]" value="{{ $data->id }}">
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->id }}
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->name }}
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->gender }}
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->email }}
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->phone }}
+                                    </label>
+                                </td>
+                                <td>
+                                    <label for="checkParticipant{{ $data->id }}">
+                                        {{ $data->address }}
+                                    </label>
+                                </td>
+                            </tr>
+                            @endif
 
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Tambahkan</button>
                 </div>
             </form>
         </div>
@@ -182,34 +208,20 @@
         "order": [
             [0, 'asc']
         ],
-        "columnDefs": [{
-                "targets": [5],
-                "orderable": false
+        "columnDefs": [
+            {
+                "width": "80px",
+                "targets": 1
             },
             {
-                "targets": [0, 5],
-                "className": "text-center"
+                "width": "90px",
+                "targets": 3
             },
             {
-                "width": "130px",
+                "width": "100px",
                 "targets": 5
             },
-            // { "width": "75px", "targets": 1 },
-            // { "width": "65px", "targets": 3 },
-            // { "width": "50px", "targets": 4 },
-            // { "width": "80px", "targets": 5 },
-            // { "width": "145px", "targets": 6 },
-            // { "width": "165px", "targets": 7 }
         ],
-        // "language": {
-        //     // "lengthMenu": "<div class='text-info'>MENU Baris </div>",
-        //     // "lengthMenu": "<div class='text-info'>Tampilkan MENU baris</div>",
-        //     "zeroRecords": "Data tidak ditemukan!",
-        //     "info": "<div class='text-info font-weight-normal'>Halaman PAGE dari PAGES</div>",
-        //     "infoEmpty": "Tidak ditemukan Data",
-        //     "infoFiltered": "(filtered from  MAX total data)",
-        //     "search":         "<span class='text-info '><i class='fa fa-search'></i>  Cari data: </span>",
-        // },
         dom: 'Bfrtip',
         buttons: [{
                 extend: 'pdf',
@@ -245,14 +257,7 @@
                 text: '<i class="fa fa-table" > </i> Columns',
                 postfixButtons: ['colvisRestore']
             },
-            // {
-            // text: '<i class="fas fa-user-plus text-teal"> </i> TAMBAH DATA',
-            // action: function ( e, dt, node, config ) {
-            //     $('#btnmodaladddataUjian').click();
-            //     }
-            // }
         ],
-        // membuat kolom
 
         "dom": "<'row'<'col-sm-12 col-md-2'l><'col-sm-12 col-md-6'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -262,10 +267,6 @@
 
     function notificationBeforeDelete(event, el) {
         event.preventDefault();
-        // if (confirm('Apakah Anda Yakin Akan Menghapus Data?')) {
-        //     $("#delete-form").attr('action', $(el).attr('href'));
-        //     $("#delete-form").submit();
-        // }
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

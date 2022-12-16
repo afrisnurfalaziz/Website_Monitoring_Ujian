@@ -20,7 +20,7 @@ class ExamController extends Controller
 
         return view('dataUjian', [
             'exams' => $exams,
-            'menu' => 'Data Ujian - Web Monitoring'
+            'menu' => 'Data Ujian - Proctor AI'
         ]);
     }
 
@@ -72,13 +72,14 @@ class ExamController extends Controller
             'pesertaUjian' => $pesertaUjian,
             'peserta' => $peserta,
             'examId' => $examId,
-            'menu' => 'Peserta Ujian - Web Monitoring'
+            'menu' => 'Peserta Ujian - Proctor AI'
         ]);
     }
 
     public function addParticipant(Request $request)
     {
         $jumlah =  count($request->participant);
+
         for ($i = 0; $i < $jumlah; $i++) {
             $item = $request->participant[$i];
             ExamReg::create([
@@ -87,15 +88,8 @@ class ExamController extends Controller
             ]);
         }
 
-        // foreach ($request->peserta as $item) {
-        //     ExamReg::create([
-        //         'participant_id' => $item,
-        //         'exam_id' => $request->exam_id,
-        //     ]);
-        // }
-
         return redirect('ujian/'.$request->exam_id)
-            ->with('save_message', 'Data ujian baru telah berhasil disimpan.');
+            ->with('success', 'Peserta ujian telah berhasil ditambahkan.');
     }
 
     /**
@@ -153,9 +147,11 @@ class ExamController extends Controller
     public function destroyParticipant($id)
     {
         $exams = ExamReg::find($id);
+        $exampId = $exams->exam->id;
+
         if ($exams) $exams->delete();
         
-        return redirect('ujian/'.$exams->exam->id)
+        return redirect('ujian/' . $exampId)
             ->with('Delete', 'Berhasil menghapus data.');
     }
 }

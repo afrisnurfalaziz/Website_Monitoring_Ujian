@@ -9,40 +9,48 @@
             <div class="card">
                 <div class="class-body">
                     <div class="container mt-4 mb-4">
-                        <h1>Monitoring Ujian</h1>
+                        <h1 class="mb-5">Ujian {{ $exam->exam_name }}</h1>
+
                         <table class="table table-hover table-bordered table-stripped" id="monitoringUjian">
                             <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th>Screenshot</th>
-                                    <th>Look</th>
+                                    <th>Menoleh ke</th>
                                     <th>Waktu</th>
-                                    <th>Dibuat</th>
-                                    <th>Diupdate</th>
+                                    <th>Tanggal Terjadi</th>
+                                    <th>Indikasi</th>
                                 </tr>
                             </thead>
 
-                            {{-- tes data --}}
-                            {{-- <tbody> --}}
                             @php
                             $count = 1;
                             @endphp
-                            @foreach ($examregs->monitorings->sortByDesc('id') as $data)
+                            @foreach ($monitorings as $data)
 
                             <tr>
                                 <td>{{ $count++ }}</td>
                                 <td>
-                                    <a href="{{ $data->screenshot }}" target="_blank">
-                                        <img src="{{ $data->screenshot }}" style="width: 60px;" alt="">
+                                    <a href="{{ url('assets/images/monitoring/' . $data->screenshot) }}" target="_blank">
+                                        <img src="{{ url('assets/images/monitoring/' . $data->screenshot) }}" style="width: 150px;" alt="">
+                                        <br><span>{{ 'ID: ' . $data->examReg->participant->id }}</span>
+                                        <br><span>{{ 'Nama: ' . $data->examReg->participant->name }}</span>
                                     </a>
                                 </td>
                                 <td>{{ $data->look_to }}</td>
-                                <td>{{ $data->time }}</td>
+                                <td>{{ $data->time . ' detik' }}</td>
                                 <td>{{ $data->created_at }}</td>
-                                <td>{{ $data->updated_at }}</td>
+                                <td>
+                                    @if ($data->time <= 3)
+                                    <span class="badge badge-success">Rendah</span>
+                                    @elseif ($data->time <= 7)
+                                    <span class="badge badge-warning">Sedang</span>
+                                    @else
+                                    <span class="badge badge-danger">Tinggi</span>
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
-                            {{-- </tbody> --}}
                         </table>
                     </div>
                 </div>
@@ -57,33 +65,14 @@
             [0, 'asc']
         ],
         "columnDefs": [{
-                "targets": [4],
+                "targets": [1],
                 "orderable": false
-            },
-            {
-                "targets": [0, 4],
-                "className": "text-center"
             },
             {
                 "width": "150px",
                 "targets": 4
             },
-            // { "width": "75px", "targets": 1 },
-            // { "width": "65px", "targets": 3 },
-            // { "width": "50px", "targets": 4 },
-            // { "width": "80px", "targets": 5 },
-            // { "width": "145px", "targets": 6 },
-            // { "width": "165px", "targets": 7 }
         ],
-        // "language": {
-        //     // "lengthMenu": "<div class='text-info'>MENU Baris </div>",
-        //     // "lengthMenu": "<div class='text-info'>Tampilkan MENU baris</div>",
-        //     "zeroRecords": "Data tidak ditemukan!",
-        //     "info": "<div class='text-info font-weight-normal'>Halaman PAGE dari PAGES</div>",
-        //     "infoEmpty": "Tidak ditemukan Data",
-        //     "infoFiltered": "(filtered from  MAX total data)",
-        //     "search":         "<span class='text-info '><i class='fa fa-search'></i>  Cari data: </span>",
-        // },
         dom: 'Bfrtip',
         buttons: [{
                 extend: 'pdf',
@@ -119,14 +108,7 @@
                 text: '<i class="fa fa-table" > </i> Columns',
                 postfixButtons: ['colvisRestore']
             },
-            // {
-            // text: '<i class="fas fa-user-plus text-teal"> </i> TAMBAH DATA',
-            // action: function ( e, dt, node, config ) {
-            //     $('#btnmodaladddataUjian').click();
-            //     }
-            // }
         ],
-        // membuat kolom
 
         "dom": "<'row'<'col-sm-12 col-md-2'l><'col-sm-12 col-md-6'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +

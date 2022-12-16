@@ -104,6 +104,7 @@
                                         <form action="{{ url('siswa/'. $data->id ) }}" method="POST">
                                             @method('PUT')
                                             @csrf
+
                                             <div class="modal-body">
 
                                                 {{-- nama siswa --}}
@@ -116,7 +117,15 @@
                                                 {{-- Jenis Kelamin --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
-                                                    <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="gender" value="{{$data->gender ?? old('gender')}}">
+                                                    <select class="custom-select @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" name="gender" value="{{old('gender')}}" required>
+                                                        @if ($data->gender == 'Laki-Laki')
+                                                        <option value="Laki-Laki" selected>Laki-Laki</option>
+                                                        <option value="Perempuan">Perempuan</option>
+                                                        @elseif ($data->gender == 'Perempuan')
+                                                        <option value="Laki-Laki">Laki-Laki</option>
+                                                        <option value="Perempuan" selected>Perempuan</option>
+                                                        @endif
+                                                    </select>
                                                     @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
@@ -143,7 +152,7 @@
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
@@ -179,41 +188,44 @@
                     {{-- nama siswa --}}
                     <div class="form-group">
                         <label for="exampleInputNamaSiswa">Nama Siswa</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputSiswa" placeholder="Nama Siswa" name="name" value="{{old('name')}}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputSiswa" placeholder="Nama Siswa" name="name" value="{{old('name')}}" required>
                         @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- Jenis Kelamin --}}
                     <div class="form-group">
                         <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
-                        <input type="text" class="form-control @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" placeholder="Masukkan Jenis Kelamin" name="gender" value="{{old('gender')}}">
+                        <select class="custom-select @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" name="gender" value="{{old('gender')}}" required>
+                            <option selected hidden value="">Pilih jenis kelamin</option>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                         @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- email --}}
                     <div class="form-group">
                         <label for="exampleInputEmail">E-mail</label>
-                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{old('email')}}">
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{old('email')}}" required>
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- phone --}}
                     <div class="form-group">
                         <label for="exampleInputTelepon">Telepon</label>
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="phone" value="{{old('phone')}}">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="phone" value="{{old('phone')}}" required>
                         @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
                     {{-- address --}}
                     <div class="form-group">
                         <label for="exampleInputAlamat">Alamat</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAlamat" placeholder="Masukkan Alamat" name="address" value="{{old('address')}}">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAlamat" placeholder="Masukkan Alamat" name="address" value="{{old('address')}}" required>
                         @error('address') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
             </form>
         </div>
