@@ -49,7 +49,6 @@
 
                         <h1>Data Siswa</h1>
 
-                        {{-- add --}}
                         <button type="button" class="btn btn-primary my-4" data-toggle="modal" data-target="#addDataSiswa"> <i class="fas fa-user-plus"></i></button>
 
                         <table class="table table-hover table-bordered table-stripped" id="alumni">
@@ -62,16 +61,13 @@
                                     <th>Telepon</th>
                                     <th>Alamat</th>
                                     <th>Opsi</th>
-                                    {{-- <th>Opsi</th> --}}
                                 </tr>
                             </thead>
-
-
-                            {{-- tes data --}}
 
                             @php
                             $count = 1;
                             @endphp
+
                             @foreach ($siswas as $data)
 
                             <tr>
@@ -81,7 +77,6 @@
                                 <td>{{ $data->email }}</td>
                                 <td>{{ $data->phone }}</td>
                                 <td>{{ $data->address }}</td>
-
                                 <td>
                                     <a href=# class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editDataSiswa{{ $data->id }}">
                                         <i class="fas fa-edit"></i>
@@ -92,7 +87,7 @@
                                 </td>
                             </tr>
 
-                            {{-- Modal Edit Siswa --}}
+                            <!-- Modal Edit Siswa -->
                             <div class="modal fade" id="editDataSiswa{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="editDataSiswaLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
@@ -106,15 +101,12 @@
                                             @csrf
 
                                             <div class="modal-body">
-
-                                                {{-- nama siswa --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputNamaSiswa">Nama Siswa</label>
-                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputSiswa" placeholder="Nama Siswa" name="name" value="{{$data->name ?? old('name')}}">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputSiswa" placeholder="Nama Siswa" name="name" value="{{$data->name ?? old('name')}}" required>
                                                     @error('name') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
-                                                {{-- Jenis Kelamin --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
                                                     <select class="custom-select @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" name="gender" value="{{old('gender')}}" required>
@@ -129,24 +121,21 @@
                                                     @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
-                                                {{-- email --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail">E-mail</label>
-                                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{$data->email ?? old('email')}}">
+                                                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{$data->email ?? old('email')}}" required>
                                                     @error('email') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
-                                                {{-- phone --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputTelepon">Telepon</label>
-                                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="phone" value="{{$data->phone ?? old('phone')}}">
+                                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Tanggal Ujian" name="phone" value="{{$data->phone ?? old('phone')}}" required>
                                                     @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
-                                                {{-- address --}}
                                                 <div class="form-group">
                                                     <label for="exampleInputAlamat">Alamat</label>
-                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAlamat" placeholder="Masukkan Alamat" name="address" value="{{$data->address ?? old('address')}}">
+                                                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAlamat" placeholder="Masukkan Alamat" name="address" value="{{$data->address ?? old('address')}}" required>
                                                     @error('address') <span class="text-danger">{{$message}}</span> @enderror
                                                 </div>
 
@@ -172,7 +161,7 @@
     @csrf
 </form>
 
-{{-- Modal create Siswa --}}
+<!-- Modal create Siswa -->
 <div class="modal fade" id="addDataSiswa" tabindex="-1" role="dialog" aria-labelledby="addDataSiswaLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -181,18 +170,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="{{ url('siswa') }}" method="POST">
-                    @csrf
+            <form action="{{ url('siswa') }}" method="POST">
+                @csrf
 
-                    {{-- nama siswa --}}
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputNamaSiswa">Nama Siswa</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="exampleInputSiswa" placeholder="Nama Siswa" name="name" value="{{old('name')}}" required>
                         @error('name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
-                    {{-- Jenis Kelamin --}}
                     <div class="form-group">
                         <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
                         <select class="custom-select @error('gender') is-invalid @enderror" id="exampleInputJenisKelamin" name="gender" value="{{old('gender')}}" required>
@@ -203,30 +190,27 @@
                         @error('gender') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
-                    {{-- email --}}
                     <div class="form-group">
                         <label for="exampleInputEmail">E-mail</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail" placeholder="Masukkan Email" name="email" value="{{old('email')}}" required>
                         @error('email') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
-                    {{-- phone --}}
                     <div class="form-group">
                         <label for="exampleInputTelepon">Telepon</label>
                         <input type="text" class="form-control @error('phone') is-invalid @enderror" id="exampleInputTelepon" placeholder="Masukkan Nomer Telepon" name="phone" value="{{old('phone')}}" required>
                         @error('phone') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
 
-                    {{-- address --}}
                     <div class="form-group">
                         <label for="exampleInputAlamat">Alamat</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="exampleInputAlamat" placeholder="Masukkan Alamat" name="address" value="{{old('address')}}" required>
                         @error('address') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
             </form>
         </div>
     </div>
@@ -249,22 +233,7 @@
                 "width": "130px",
                 "targets": 6
             },
-            // { "width": "75px", "targets": 1 },
-            // { "width": "65px", "targets": 3 },
-            // { "width": "50px", "targets": 4 },
-            // { "width": "80px", "targets": 5 },
-            // { "width": "145px", "targets": 6 },
-            // { "width": "165px", "targets": 7 }
         ],
-        // "language": {
-        //     // "lengthMenu": "<div class='text-info'>MENU Baris </div>",
-        //     // "lengthMenu": "<div class='text-info'>Tampilkan MENU baris</div>",
-        //     "zeroRecords": "Data tidak ditemukan!",
-        //     "info": "<div class='text-info font-weight-normal'>Halaman PAGE dari PAGES</div>",
-        //     "infoEmpty": "Tidak ditemukan Data",
-        //     "infoFiltered": "(filtered from  MAX total data)",
-        //     "search":         "<span class='text-info '><i class='fa fa-search'></i>  Cari data: </span>",
-        // },
         dom: 'Bfrtip',
         buttons: [{
                 extend: 'pdf',
@@ -300,14 +269,7 @@
                 text: '<i class="fa fa-table" > </i> Columns',
                 postfixButtons: ['colvisRestore']
             },
-            // {
-            // text: '<i class="fas fa-user-plus text-teal"> </i> TAMBAH DATA',
-            // action: function ( e, dt, node, config ) {
-            //     $('#btnmodaladdAlumni').click();
-            //     }
-            // }
         ],
-        // membuat kolom
 
         "dom": "<'row'<'col-sm-12 col-md-2'l><'col-sm-12 col-md-6'B><'col-sm-12 col-md-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -317,18 +279,15 @@
 
     function notificationBeforeDelete(event, el) {
         event.preventDefault();
-        // if (confirm('Apakah Anda Yakin Akan Menghapus Data?')) {
-        //     $("#delete-form").attr('action', $(el).attr('href'));
-        //     $("#delete-form").submit();
-        // }
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah Anda yakin ?',
+            text: "Jika dihapus, data ini tidak akan bisa dikembalian!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya, hapus sekarang!',
+            cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 $("#delete-form").attr('action', $(el).attr('href'));

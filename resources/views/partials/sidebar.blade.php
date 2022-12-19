@@ -53,13 +53,17 @@ $admin = 'active';
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="/home">Proctor AI</a>
+            <a href="/home">
+                <img src="{{ url('assets/images/logo-light.png') }}" width="40" alt="">
+                Proctor AI
+            </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="/home">P AI</a>
+            <a href="/home">
+                <img src="{{ url('assets/images/logo-light.png') }}" width="40" alt="">
+            </a>
         </div>
-        <ul class="sidebar-menu">
-            <li class="menu-header">Menu Navigation</li>
+        <ul class="sidebar-menu mt-4">
             <li class="nav-link {{ $home }}"><a class="nav-link" href="/home"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
             <li class="nav-link {{ $ujian }}"><a class="nav-link" href="/ujian"><i class="fas fa-folder-open"></i> <span>Data Ujian</span></a></li>
             <li class="nav-link {{ $siswa }}"><a class="nav-link" href="/siswa"><i class="fas fa-users"></i> <span>Data Siswa</span></a></li>

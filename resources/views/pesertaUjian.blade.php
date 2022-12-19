@@ -59,11 +59,10 @@
                                 </tr>
                             </thead>
 
-                            {{-- tes data --}}
-                            {{-- <tbody> --}}
                             @php
                             $count = 1;
                             @endphp
+
                             @foreach ($pesertaUjian as $data)
 
                             <tr>
@@ -84,7 +83,6 @@
                             </tr>
 
                             @endforeach
-                            {{-- </tbody> --}}
                         </table>
                     </div>
                 </div>
@@ -124,7 +122,6 @@
                             </tr>
                         </thead>
 
-                        {{-- tes data --}}
                         <tbody>
                             @php
                             $count = 1;
@@ -208,8 +205,7 @@
         "order": [
             [0, 'asc']
         ],
-        "columnDefs": [
-            {
+        "columnDefs": [{
                 "width": "80px",
                 "targets": 1
             },
@@ -268,13 +264,14 @@
     function notificationBeforeDelete(event, el) {
         event.preventDefault();
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apakah Anda yakin ?',
+            text: "Jika dihapus, data ini tidak akan bisa dikembalian!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya, hapus sekarang!',
+            cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 $("#delete-form").attr('action', $(el).attr('href'));
